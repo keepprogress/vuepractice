@@ -41,12 +41,18 @@
             </li>
           </ul>
         </div>
-        <!-- <Info v-if="current === 'Personal Info'"/>
-        <Orders v-if="current === 'Orders'" :worldname="snowworld" />
-        <Overview v-if="current === 'Overview'" /> -->
         <keep-alive>
-          <component :is="current"></component>
+          <Info v-if="current === 'Info'" :childInfo="infoAndOrder.personal_info"/>
         </keep-alive>
+        <keep-alive>
+          <Orders v-if="current === 'Orders'" :worldname="snowworld" />
+        </keep-alive>
+        <keep-alive>
+          <Overview v-if="current === 'Overview'" />
+        </keep-alive>
+        <!-- <keep-alive>
+          <component :is="current"></component>
+        </keep-alive> -->
       </div>
     </div>
   </div>
@@ -67,7 +73,24 @@ export default {
   data () {
     return {
       snowworld: 'newwwwwww world',
-      current: 'Info'
+      current: 'Info',
+      strLength: 0,
+      infoAndOrder: {
+        id: 'A0000001',
+        personal_info: {
+          first_name: 'Fishman',
+          last_name: 'ILike',
+          gender: 1,
+          address: 'ABCDEFG',
+          is_homeless: false,
+          job: null,
+          note: null
+        },
+        orders: {
+          apple_count: 1,
+          banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
+        }
+      }
     }
   }
 }

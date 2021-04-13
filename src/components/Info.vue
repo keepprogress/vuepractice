@@ -9,6 +9,7 @@
             class="form-control"
             id="FirstName"
             placeholder="Plz type your firstname"
+            v-model="component_value.first_name"
           />
         </div>
       </div>
@@ -93,13 +94,14 @@
     </div>
     <div class="text-left">
       <h6 class="mt-3">Note</h6>
-      <h7>{{ countStr }} / 2000 characters</h7>
+      <h6>{{ countStr }} / 2000 characters</h6>
       <textarea
         class="form-control"
         aria-label="With textarea"
         placeholder="Note Here"
         v-model="note"
       ></textarea>
+      {{ childInfo.first_name }}
     </div>
   </div>
 </template>
@@ -108,7 +110,7 @@
 export default {
   name: 'Info',
   props: {
-    TonsOfInfo: {
+    childInfo: {
       type: Object,
       default: () => {}
     }
@@ -122,6 +124,9 @@ export default {
     countStr: function () {
       const str = this.$data.note
       return str.trim().length
+    },
+    component_value () {
+      return this.childInfo
     }
   }
 }

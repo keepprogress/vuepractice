@@ -2,7 +2,7 @@
   <div class="container">
     <div>
     <h1>This is Order Component</h1>
-    <h5>My name is {{ worldname }}</h5>
+    <h5>worldname is {{ worldname }}</h5>
   </div>
     <div class="row align-right">
       <div class="col">
