@@ -4,15 +4,30 @@
             以下是某個人的訂單
         </h5>
         <ul>
-            <li>1顆蘋果</li>
+            <li>{{ Orders.apple_count }}顆蘋果</li>
             <li>香蕉配料</li>
-            <ul>
-            <li>巧克力醬</li>
-            <li>辣椒</li>
-            <li>大蒜</li>
-            <li>醬油</li>
-            </ul>
+                <ul>
+                    <li v-for="condiment in Orders.banana_condiments" v-bind:key="condiment">{{ condiment }}</li>
+                </ul>
         </ul>
 
     </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      Orders: {
+        apple_count: 50,
+        banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
+      }
+    }
+  }
+
+}
+</script>
+
+<style>
+
+</style>

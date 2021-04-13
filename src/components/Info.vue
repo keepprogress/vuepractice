@@ -93,11 +93,12 @@
     </div>
     <div class="text-left">
       <h6 class="mt-3">Note</h6>
-      <h7>20 / 2000 characters</h7>
+      <h7>{{ countStr }} / 2000 characters</h7>
       <textarea
         class="form-control"
         aria-label="With textarea"
         placeholder="Note Here"
+        v-model="note"
       ></textarea>
     </div>
   </div>
@@ -110,6 +111,17 @@ export default {
     TonsOfInfo: {
       type: Object,
       default: () => {}
+    }
+  },
+  data () {
+    return {
+      note: ''
+    }
+  },
+  computed: {
+    countStr: function () {
+      const str = this.$data.note
+      return str.trim().length
     }
   }
 }
