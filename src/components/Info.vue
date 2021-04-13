@@ -70,7 +70,7 @@
       />
     </div>
     <div class="pt-3">
-      <div class="form-check">
+      <div class="form-check text-left">
         <input
           class="form-check-input"
           type="checkbox"
@@ -82,7 +82,7 @@
         </label>
       </div>
     </div>
-    <div class="pt-2">
+    <div class="pt-2 text-left">
       <h6 class="mb-2">job</h6>
       <select class="form-select" aria-label="Default select example">
         <option selected>保密</option>
@@ -91,7 +91,7 @@
         <option value="3">秘密調查員的調查員</option>
       </select>
     </div>
-    <div>
+    <div class="text-left">
       <h6 class="mt-3">Note</h6>
       <h7>20 / 2000 characters</h7>
       <textarea

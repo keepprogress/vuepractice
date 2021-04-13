@@ -14,10 +14,10 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: current == 'personal info' }"
+                :class="{ active: current == 'Info' }"
                 aria-current="page"
                 href="#"
-                @click.prevent="current = 'personal info'"
+                @click.prevent="current = 'Info'"
                 >Personal Info</a
               >
             </li>
@@ -41,8 +41,12 @@
             </li>
           </ul>
         </div>
-        <Info />
-        <Orders />
+        <!-- <Info v-if="current === 'Personal Info'"/>
+        <Orders v-if="current === 'Orders'" :worldname="snowworld" />
+        <Overview v-if="current === 'Overview'" /> -->
+        <keep-alive>
+          <component :is="current"></component>
+        </keep-alive>
       </div>
     </div>
   </div>
@@ -51,12 +55,20 @@
 <script>
 import Info from './components/Info'
 import Orders from './components/Orders'
+import Overview from './components/Overview'
 
 export default {
   name: 'App',
   components: {
     Info,
-    Orders
+    Orders,
+    Overview
+  },
+  data () {
+    return {
+      snowworld: 'newwwwwww world',
+      current: 'Info'
+    }
   }
 }
 </script>
