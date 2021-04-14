@@ -28,31 +28,31 @@
     <div class="row">
       <h5>Banana</h5>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate" v-model="testCheckBox">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox1">巧克力醬</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="strawberry">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="strawberry" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox2">草莓醬</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="flax">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="flax" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox3">胡麻醬</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="miso">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="miso" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox4">味噌</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="chili">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="chili" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox5">辣椒</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="garlic" v-model="testCheckBox">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="garlic" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox6">大蒜</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="soy_sauce">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="soy_sauce" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox7">醬油</label>
       </div>
     </div>
@@ -87,6 +87,11 @@ export default {
     },
     handleMinusFiveClick () {
       this.$emit('handleMinusFiveClick')
+    }
+  },
+  computed: {
+    component_value () {
+      return this.orders
     }
   }
 }

@@ -63,9 +63,12 @@
         </keep-alive>
         <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>
         <div>Here is parent component lastname {{ this.$data.infoAndOrder.personal_info.last_name }}</div>
+        <div>Here is parent component gender {{ this.$data.infoAndOrder.personal_info.gender }}</div>
         <div>Here is parent component Address {{ this.$data.infoAndOrder.personal_info.address }}</div>
+        <div>Here is parent component Job {{ this.$data.infoAndOrder.personal_info.job }}</div>
         <div>Here is parent component note {{ this.$data.infoAndOrder.personal_info.note }}</div>
         <div>Here is parent component Apple count {{ this.$data.infoAndOrder.orders.apple_count }}</div>
+        <div>Here is parent component Banana Condiments {{ this.$data.infoAndOrder.orders.banana_condiments }}</div>
         <div class="col">
           <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
         </div>

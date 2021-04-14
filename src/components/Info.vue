@@ -4,13 +4,13 @@
       <div class="col-sm">
         <div class="form-group">
           <label for="FirstName">FirstName</label>
+          <!-- because v-model contains v-on and v-bind:value so v-on:change="$emit('input', $event.target.value)" is not necesarry -->
           <input
             type="text"
             class="form-control"
             id="FirstName"
             placeholder="Plz type your firstname"
             v-model="component_value.first_name"
-            v-on:change="$emit('input', $event.target.value)"
           />
         </div>
       </div>
@@ -23,22 +23,23 @@
             id="LastName"
             placeholder="Plz type your lastname"
             v-model="component_value.last_name"
-            v-on:change="$emit('input', $event.target.value)"
           />
         </div>
       </div>
     </div>
     <div class="row">
-      <div calss="col-sm">
+      <div>
         <h6 class="ml-3">gender</h6>
       </div>
-      <div calss="col-sm">
+      <div class="col-sm text-left">
         <div class="form-check">
           <input
             class="form-check-input"
             type="radio"
             name="GenderRadio"
             id="Secret"
+            value=0
+            v-model="component_value.gender"
           />
           <label class="form-check-label" for="Secret"> Secret </label>
         </div>
@@ -48,7 +49,8 @@
             type="radio"
             name="GenderRadio"
             id="Male"
-            checked
+            value=1
+            v-model="component_value.gender"
           />
           <label class="form-check-label" for="Male"> Male </label>
         </div>
@@ -58,7 +60,8 @@
             type="radio"
             name="GenderRadio"
             id="Female"
-            checked
+            value=2
+            v-model="component_value.gender"
           />
           <label class="form-check-label" for="Female"> Female </label>
         </div>
@@ -72,7 +75,7 @@
         id="Address"
         placeholder="Plz type your Address"
         v-model="component_value.address"
-        v-on:change="$emit('input', $event.target.value)"
+        :disabled="this.component_value.is_homeless"
       />
     </div>
     <div class="pt-3">
@@ -82,6 +85,8 @@
           type="checkbox"
           value=""
           id="flexCheckDefault"
+          v-model="component_value.is_homeless"
+          v-on:input="deleteAddress"
         />
         <label class="form-check-label" for="flexCheckDefault">
           此客戶居無定所
@@ -90,11 +95,11 @@
     </div>
     <div class="pt-2 text-left">
       <h6 class="mb-2">job</h6>
-      <select class="form-select" aria-label="Default select example">
-        <option selected>保密</option>
-        <option value="1">調查員</option>
-        <option value="2">秘密調查員</option>
-        <option value="3">秘密調查員的調查員</option>
+      <select class="form-select" aria-label="Default select example" v-model="component_value.job">
+        <option value=null>保密</option>
+        <option value="agent">調查員</option>
+        <option value="secret_agent">秘密調查員</option>
+        <option value="agent of secret_agent">秘密調查員的調查員</option>
       </select>
     </div>
     <div class="text-left">
@@ -105,9 +110,7 @@
         aria-label="With textarea"
         placeholder="Note Here"
         v-model="component_value.note"
-        v-on:change="$emit('input', $event.target.value)"
       ></textarea>
-      {{ childInfo.first_name }}
     </div>
   </div>
 </template>
@@ -127,12 +130,20 @@ export default {
     }
   },
   computed: {
-    countStr: function () {
-      const str = this.$data.note
+    countStr () {
+      if (this.childInfo.note === null) {
+        return 0
+      }
+      const str = this.component_value.note
       return str.trim().length
     },
     component_value () {
       return this.childInfo
+    }
+  },
+  methods: {
+    deleteAddress () {
+      this.component_value.address = ''
     }
   }
 }
