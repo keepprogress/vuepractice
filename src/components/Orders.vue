@@ -2,7 +2,7 @@
   <div class="container">
     <div>
     <h1>This is Order Component</h1>
-    <h5>worldname is {{ worldname }}</h5>
+    <!-- <h5>worldname is {{ worldname }}</h5> -->
   </div>
     <div class="row align-right">
       <div class="col">
@@ -15,7 +15,7 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" v-model="counter"
+        <input type="number" id="applenum" name="applenum" v-bind:value="orders.apple_count"
        min="1" max="10000">
       </div>
       <div class="col">
@@ -62,9 +62,9 @@
 <script>
 export default {
   props: {
-    worldname: {
-      type: String,
-      default: '',
+    orders: {
+      type: Object,
+      default: () => {},
       required: false
     }
   },
@@ -76,6 +76,7 @@ export default {
   methods: {
     handlePlusOneClick () {
       this.$data.counter++
+      this.$emit('handlePlusOneClick')
     },
     handleMinusOneClick () {
       if (this.$data.counter > 0) {
