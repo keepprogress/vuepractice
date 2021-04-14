@@ -75,24 +75,20 @@ export default {
   },
   methods: {
     handlePlusOneClick () {
-      this.$data.counter++
       this.$emit('handlePlusOneClick')
     },
     handleMinusOneClick () {
-      if (this.$data.counter > 0) {
-        this.$data.counter--
-      }
+      this.$emit('handleMinusOneClick')
     },
     handlePlusFiveClick () {
-      this.$data.counter += 5
+      this.$emit('handlePlusFiveClick')
     },
     handleMinusFiveClick () {
-      if (this.$data.counter > 4) {
-        this.$data.counter -= 5
-      }
+      this.$emit('handleMinusFiveClick')
     }
   }
 }
+
 </script>
 
 <style>

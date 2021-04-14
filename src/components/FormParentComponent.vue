@@ -45,7 +45,14 @@
           <Info v-if="current === 'Info'" :childInfo="infoAndOrder.personal_info"/>
         </keep-alive>
         <keep-alive>
-          <Orders v-if="current === 'Orders'" :orders="infoAndOrder.orders" v-on:handlePlusOneClick="incrementParent"/>
+          <Orders
+          v-if="current === 'Orders'"
+          :orders="infoAndOrder.orders"
+          v-on:handlePlusOneClick="PlusOneParent"
+          v-on:handleMinusOneClick="MinusOneParent"
+          v-on:handlePlusFiveClick="PlusFiveParent"
+          v-on:handleMinusFiveClick="MinusFiveParent"
+          />
         </keep-alive>
         <keep-alive>
           <Overview v-if="current === 'Overview'" />
@@ -98,8 +105,25 @@ export default {
     }
   },
   methods: {
-    incrementParent: function () {
-      this.$data.infoAndOrder.orders.apple_count++
+    PlusOneParent: function () {
+      if (this.$data.infoAndOrder.orders.apple_count < 10000) {
+        this.$data.infoAndOrder.orders.apple_count++
+      }
+    },
+    MinusOneParent: function () {
+      if (this.$data.infoAndOrder.orders.apple_count > 0) {
+        this.$data.infoAndOrder.orders.apple_count--
+      }
+    },
+    PlusFiveParent: function () {
+      if (this.$data.infoAndOrder.orders.apple_count < 9995) {
+        this.$data.infoAndOrder.orders.apple_count += 5
+      }
+    },
+    MinusFiveParent: function () {
+      if (this.$data.infoAndOrder.orders.apple_count > 4) {
+        this.$data.infoAndOrder.orders.apple_count -= 5
+      }
     }
   }
 }
