@@ -10,7 +10,6 @@
                     <li v-for="condiment in orders.banana_condiments" v-bind:key="condiment">{{ condiment }}</li>
                 </ul>
         </ul>
-
     </div>
 </template>
 
