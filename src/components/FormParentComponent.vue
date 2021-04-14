@@ -42,7 +42,10 @@
           </ul>
         </div>
         <keep-alive>
-          <Info v-if="current === 'Info'" :childInfo="infoAndOrder.personal_info"/>
+          <Info
+          v-if="current === 'Info'"
+          :childInfo="infoAndOrder.personal_info"
+          />
         </keep-alive>
         <keep-alive>
           <Orders
@@ -55,11 +58,16 @@
           />
         </keep-alive>
         <keep-alive>
-          <Overview v-if="current === 'Overview'" />
+          <Overview v-if="current === 'Overview'"
+          :orders= "infoAndOrder.orders"/>
         </keep-alive>
+        <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>
+        <div>Here is parent component lastname {{ this.$data.infoAndOrder.personal_info.last_name }}</div>
+        <div>Here is parent component Address {{ this.$data.infoAndOrder.personal_info.address }}</div>
+        <div>Here is parent component note {{ this.$data.infoAndOrder.personal_info.note }}</div>
         <div>Here is parent component Apple count {{ this.$data.infoAndOrder.orders.apple_count }}</div>
         <div class="col">
-          <button type="button" @click="incrementParent" class="btn btn-light">+1</button>
+          <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
         </div>
         <!-- <keep-alive>
           <component :is="current"></component>
@@ -124,6 +132,18 @@ export default {
       if (this.$data.infoAndOrder.orders.apple_count > 4) {
         this.$data.infoAndOrder.orders.apple_count -= 5
       }
+    },
+    FirstNameParent: function (event) {
+      this.$data.infoAndOrder.personal_info.first_name = event.target.value
+    },
+    LastNameParent: function (event) {
+      this.$data.infoAndOrder.personal_info.last_name = event.target.value
+    },
+    AddressParent: function (event) {
+      this.$data.infoAndOrder.personal_info.address = event.target.value
+    },
+    NoteParent: function (event) {
+      this.$data.infoAndOrder.personal_info.note = event.target.value
     }
   }
 }

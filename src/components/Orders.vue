@@ -28,7 +28,7 @@
     <div class="row">
       <h5>Banana</h5>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate" v-model="testCheckBox">
         <label class="form-check-label" for="inlineCheckbox1">巧克力醬</label>
       </div>
       <div class="form-check form-check-inline">
@@ -48,7 +48,7 @@
         <label class="form-check-label" for="inlineCheckbox5">辣椒</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="garlic">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="garlic" v-model="testCheckBox">
         <label class="form-check-label" for="inlineCheckbox6">大蒜</label>
       </div>
       <div class="form-check form-check-inline">
@@ -56,6 +56,7 @@
         <label class="form-check-label" for="inlineCheckbox7">醬油</label>
       </div>
     </div>
+    {{ testCheckBox }}
   </div>
 </template>>
 
@@ -70,7 +71,8 @@ export default {
   },
   data () {
     return {
-      counter: 1
+      counter: 1,
+      testCheckBox: ['chocolate', 'garlic']
     }
   },
   methods: {

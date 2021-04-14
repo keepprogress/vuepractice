@@ -10,6 +10,7 @@
             id="FirstName"
             placeholder="Plz type your firstname"
             v-model="component_value.first_name"
+            v-on:change="$emit('input', $event.target.value)"
           />
         </div>
       </div>
@@ -21,6 +22,8 @@
             class="form-control"
             id="LastName"
             placeholder="Plz type your lastname"
+            v-model="component_value.last_name"
+            v-on:change="$emit('input', $event.target.value)"
           />
         </div>
       </div>
@@ -68,6 +71,8 @@
         class="form-control"
         id="Address"
         placeholder="Plz type your Address"
+        v-model="component_value.address"
+        v-on:change="$emit('input', $event.target.value)"
       />
     </div>
     <div class="pt-3">
@@ -99,7 +104,8 @@
         class="form-control"
         aria-label="With textarea"
         placeholder="Note Here"
-        v-model="note"
+        v-model="component_value.note"
+        v-on:change="$emit('input', $event.target.value)"
       ></textarea>
       {{ childInfo.first_name }}
     </div>
