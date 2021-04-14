@@ -1,6 +1,20 @@
 <template>
   <div class="app">
-    <form-parent-component />
+    <form-parent-component
+    v-for="singleForm in infoAndOrderArray"
+    :key="singleForm.id"
+    :personalInfo="singleForm.personal_info"
+    :order="singleForm.orders"
+    />
+  </div>
+  <div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item" v-for="page in infoAndOrderArray" v-bind:key="page.id"><a class="page-link" href="#">{{ page.id }}</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -14,7 +28,7 @@ export default {
   },
   data () {
     return {
-      infoAndOrderArrar: [
+      infoAndOrderArray: [
         {
           id: 'A0000001',
           personal_info:

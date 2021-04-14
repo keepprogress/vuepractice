@@ -72,6 +72,7 @@
         <div class="col">
           <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
         </div>
+        <div>{{ this.order }}</div>
         <!-- <keep-alive>
           <component :is="current"></component>
         </keep-alive> -->
@@ -92,9 +93,18 @@ export default {
     Orders,
     Overview
   },
+  props: {
+    order: {
+      type: Object,
+      default: () => {}
+    },
+    personalInfo: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data () {
     return {
-      snowworld: 'newwwwwww world',
       current: 'Info',
       strLength: 0,
       infoAndOrder: {
@@ -148,6 +158,13 @@ export default {
     NoteParent: function (event) {
       this.$data.infoAndOrder.personal_info.note = event.target.value
     }
+  },
+  created () {
+    this.$data.infoAndOrder.personal_info = this.personalInfo
+    this.$data.infoAndOrder.orders = this.order
+  },
+  mounted () {
+    console.log(this.order)
   }
 }
 </script>
