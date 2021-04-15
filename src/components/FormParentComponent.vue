@@ -1,8 +1,14 @@
 <template>
   <div class="parent">
     <div class="container">
-      <h5>Form A0000001</h5>
-      <h5>跳至, 共5張</h5>
+      <h5>Form {{ id }}</h5>
+      <h5>跳至,
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>共5張</h5>
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary">Log this Form</button>
         <button type="button" class="btn btn-info">Log all forms</button>
@@ -44,13 +50,13 @@
         <keep-alive>
           <Info
           v-if="current === 'Info'"
-          :childInfo="infoAndOrder.personal_info"
+          :childInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
         <keep-alive>
           <Orders
           v-if="current === 'Orders'"
-          :orders="infoAndOrder.orders"
+          :orders="this.$data.infoAndOrder.orders"
           v-on:handlePlusOneClick="PlusOneParent"
           v-on:handleMinusOneClick="MinusOneParent"
           v-on:handlePlusFiveClick="PlusFiveParent"
@@ -59,7 +65,7 @@
         </keep-alive>
         <keep-alive>
           <Overview v-if="current === 'Overview'"
-          :orders= "infoAndOrder.orders"/>
+          :orders="this.$data.infoAndOrder.orders"/>
         </keep-alive>
         <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>
         <div>Here is parent component lastname {{ this.$data.infoAndOrder.personal_info.last_name }}</div>
@@ -87,7 +93,7 @@ import Orders from '@/components/Orders.vue'
 import Overview from '@/components/Overview.vue'
 
 export default {
-  name: 'App',
+  name: 'com1',
   components: {
     Info,
     Orders,
@@ -101,6 +107,9 @@ export default {
     personalInfo: {
       type: Object,
       default: () => {}
+    },
+    id: {
+      type: String
     }
   },
   data () {
@@ -145,26 +154,18 @@ export default {
       if (this.$data.infoAndOrder.orders.apple_count > 4) {
         this.$data.infoAndOrder.orders.apple_count -= 5
       }
-    },
-    FirstNameParent: function (event) {
-      this.$data.infoAndOrder.personal_info.first_name = event.target.value
-    },
-    LastNameParent: function (event) {
-      this.$data.infoAndOrder.personal_info.last_name = event.target.value
-    },
-    AddressParent: function (event) {
-      this.$data.infoAndOrder.personal_info.address = event.target.value
-    },
-    NoteParent: function (event) {
-      this.$data.infoAndOrder.personal_info.note = event.target.value
     }
   },
-  created () {
-    this.$data.infoAndOrder.personal_info = this.personalInfo
-    this.$data.infoAndOrder.orders = this.order
-  },
-  mounted () {
-    console.log(this.order)
+  watch: {
+    personalInfo () {
+      this.$data.infoAndOrder.personal_info = this.personalInfo
+    },
+    order () {
+      this.$data.infoAndOrder.orders = this.order
+    },
+    id () {
+      this.$data.id = this.id
+    }
   }
 }
 </script>

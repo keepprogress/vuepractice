@@ -1,18 +1,23 @@
 <template>
   <div class="app">
     <form-parent-component
-    v-for="singleForm in infoAndOrderArray"
-    :key="singleForm.id"
     :personalInfo="singleForm.personal_info"
     :order="singleForm.orders"
+    :id="singleForm.id"
     />
   </div>
   <div>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item" v-for="page in infoAndOrderArray" v-bind:key="page.id"><a class="page-link" href="#">{{ page.id }}</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item">
+          <button type="button" class="page-link" @click="hanldleCurentPagedecrease">Previous</button>
+        </li>
+        <li class="page-item" v-for="page in pages" v-bind:key="page">
+          <button type="button" class="page-link" @click="this.currentPage = page"> {{ page }}</button>
+        </li>
+        <li class="page-item">
+          <button type="button" class="page-link" @click="hanldleCurentPageIncrement">Next</button>
+        </li>
       </ul>
     </nav>
   </div>
@@ -110,8 +115,36 @@ export default {
             banana_condiments: ['chili', 'garlic']
           }
         }
-      ]
+      ],
+      currentPage: 1,
+      pages: []
     }
+  },
+  methods: {
+    setPages () {
+      for (let index = 1; index <= this.infoAndOrderArray.length; index++) {
+        this.pages.push(index)
+      }
+    },
+    hanldleCurentPageIncrement () {
+      if (this.$data.currentPage < this.$data.pages.length) {
+        this.$data.currentPage++
+      }
+    },
+    hanldleCurentPagedecrease () {
+      if (this.$data.currentPage > 1) {
+        this.$data.currentPage--
+      }
+    }
+  },
+  computed: {
+    singleForm () {
+      return this.$data.infoAndOrderArray[this.currentPage - 1]
+    }
+  },
+  created () {
+    this.setPages()
+    console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
   }
 }
 </script>
