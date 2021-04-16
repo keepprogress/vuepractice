@@ -9,9 +9,9 @@
         </select>共{{ totalPages.length }}張</h5>
         {{ totalId }}
       <div class="p-2 col-sm">
-        <button type="button" class="btn btn-primary">Log this Form</button>
-        <button type="button" class="btn btn-info">Log all forms</button>
-        <button type="button" class="btn btn-danger">Delete this form</button>
+        <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">Log this Form</button>
+        <button type="button" class="btn btn-info" @click="LogAllFormHandler">Log all forms</button>
+        <button type="button" class="btn btn-danger" @click="DeleteSingleFormHandler">Delete this form</button>
       </div>
       <div class="container">
         <div class="mb-3">
@@ -155,13 +155,22 @@ export default {
         this.$data.infoAndOrder.orders.apple_count += 5
       }
     },
-    MinusFiveParent: function () {
+    MinusFiveParent () {
       if (this.$data.infoAndOrder.orders.apple_count > 4) {
         this.$data.infoAndOrder.orders.apple_count -= 5
       }
     },
-    FormTopIDChangeHandler: function (idSingle) {
-      this.$emit('FormTopIDChangeHandler', (idSingle))
+    FormTopIDChangeHandler (e) {
+      this.$emit('FormTopIDChangeHandler', (e))
+    },
+    LogSingleFormHandler () {
+      this.$emit('LogSingleFormHandler')
+    },
+    LogAllFormHandler () {
+      this.$emit('LogAllFormHandler')
+    },
+    DeleteSingleFormHandler () {
+      this.$emit('DeleteSingleFormHandler')
     }
   },
   watch: {

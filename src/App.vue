@@ -7,22 +7,25 @@
     :totalPages="pages"
     :totalId="totalId"
     @FormTopIDChangeHandler="handleParentSwitchPage"
+    @LogSingleFormHandler="handleLogSingleForm"
+    @LogAllFormHandler="handleLogAllForm"
+    @DeleteSingleFormHandler="handleDeleteSingleForm"
     />
-  </div>
-  <div>
+    <div>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item">
           <button type="button" class="page-link" @click="hanldleCurentPagedecrease">Previous</button>
         </li>
         <li class="page-item" v-for="page in pages" v-bind:key="page">
-          <button type="button" class="page-link" @click="this.currentPage = page"> {{ page }}</button>
+          <button type="button" class="page-link" data-toggle="tooltip" data-placement="right" title="Tooltip on top" @click="this.$data.currentPage = page"> {{ page }}</button>
         </li>
         <li class="page-item">
           <button type="button" class="page-link" @click="hanldleCurentPageIncrement">Next</button>
         </li>
       </ul>
     </nav>
+  </div>
   </div>
 </template>
 
@@ -121,7 +124,13 @@ export default {
       ],
       currentPage: 1,
       pages: [],
-      totalId: []
+      totalId: [],
+      IndexAndId: [
+        {
+          id: '',
+          index: ''
+        }
+      ]
     }
   },
   methods: {
@@ -140,6 +149,33 @@ export default {
         this.$data.currentPage--
       }
     },
+    handleLogSingleForm () {
+      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
+    },
+    handleLogAllForm () {
+      console.log(this.$data.infoAndOrderArray)
+    },
+    handleDeleteSingleForm () {
+      const arr = this.$data.infoAndOrderArray
+      if (arr.length === 0) {
+        console.log('we have no customer!!')
+      }
+      if (arr.length > 0) {
+        console.log(this.singleForm.id)
+        const singleFormTemp = this.singleForm.id
+        for (let index = 0; index < arr.length; index++) {
+          if (singleFormTemp === arr[index].id) {
+            console.log('we found item to delete' + arr[index].id)
+            this.$data.infoAndOrderArray.splice(index, 1)
+            this.$data.currentPage = 1
+            console.log(this.$data.infoAndOrderArray)
+          }
+        }
+      }
+      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
+    },
+    // which page to change depending on currentPage so handleParentSwitchPage will find index in this.$data.infoAndOrderArray
+    // and send it to foundedId if the selected id value is matched with this.$data.infoAndOrderArray
     handleParentSwitchPage (e) {
       console.log(e.target.value)
       const arr = this.$data.infoAndOrderArray
@@ -157,7 +193,22 @@ export default {
   // use computed to dynamic switch props
   computed: {
     singleForm () {
-      return this.$data.infoAndOrderArray[this.currentPage - 1]
+      return this.$data.infoAndOrderArray[this.currentPage - 1] || {
+        id: '',
+        personal_info: {
+          first_name: '',
+          last_name: '',
+          gender: 0,
+          address: '',
+          is_homeless: false,
+          job: null,
+          note: ''
+        },
+        orders: {
+          apple_count: 0,
+          banana_condiments: []
+        }
+      }
     }
   },
   // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
