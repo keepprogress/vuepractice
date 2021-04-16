@@ -99,7 +99,7 @@
         <option value=null>保密</option>
         <option value="agent">調查員</option>
         <option value="secret_agent">秘密調查員</option>
-        <option value="agent of secret_agent">秘密調查員的調查員</option>
+        <option value="agent_of_secret_agent">秘密調查員的調查員</option>
       </select>
     </div>
     <div class="text-left">

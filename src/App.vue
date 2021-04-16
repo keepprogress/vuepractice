@@ -4,6 +4,9 @@
     :personalInfo="singleForm.personal_info"
     :order="singleForm.orders"
     :id="singleForm.id"
+    :totalPages="pages"
+    :totalId="totalId"
+    @FormTopIDChangeHandler="handleParentSwitchPage"
     />
   </div>
   <div>
@@ -117,7 +120,8 @@ export default {
         }
       ],
       currentPage: 1,
-      pages: []
+      pages: [],
+      totalId: []
     }
   },
   methods: {
@@ -135,16 +139,36 @@ export default {
       if (this.$data.currentPage > 1) {
         this.$data.currentPage--
       }
+    },
+    handleParentSwitchPage (e) {
+      console.log(e.target.value)
+      const arr = this.$data.infoAndOrderArray
+      let foundedId = 0
+      for (let index = 0; index < arr.length; index++) {
+        if (arr[index].id === e.target.value) {
+          console.log('we found ' + arr[index].id)
+          foundedId = index
+        }
+      }
+      console.log(foundedId)
+      this.$data.currentPage = foundedId + 1
     }
   },
+  // use computed to dynamic switch props
   computed: {
     singleForm () {
       return this.$data.infoAndOrderArray[this.currentPage - 1]
     }
   },
+  // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
   created () {
     this.setPages()
     console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
+    for (let i = 0; i < this.$data.infoAndOrderArray.length; i++) {
+      this.$data.totalId.push(this.$data.infoAndOrderArray[i].id)
+    }
+    console.log(this.$data.totalId)
+    console.log(this.pages)
   }
 }
 </script>

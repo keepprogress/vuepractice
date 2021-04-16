@@ -3,12 +3,11 @@
     <div class="container">
       <h5>Form {{ id }}</h5>
       <h5>跳至,
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>共5張</h5>
+        <!-- use v-bind to oneWay Binding value in 'id' props -->
+        <select class="form-select" aria-label="Default select example" v-bind:value="this.id" @change="FormTopIDChangeHandler">
+          <option v-for="idSingle in totalId" v-bind:key="idSingle">{{ idSingle }}</option>
+        </select>共{{ totalPages.length }}張</h5>
+        {{ totalId }}
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary">Log this Form</button>
         <button type="button" class="btn btn-info">Log all forms</button>
@@ -110,6 +109,12 @@ export default {
     },
     id: {
       type: String
+    },
+    totalPages: {
+      type: Array
+    },
+    totalId: {
+      type: Array
     }
   },
   data () {
@@ -154,6 +159,9 @@ export default {
       if (this.$data.infoAndOrder.orders.apple_count > 4) {
         this.$data.infoAndOrder.orders.apple_count -= 5
       }
+    },
+    FormTopIDChangeHandler: function (idSingle) {
+      this.$emit('FormTopIDChangeHandler', (idSingle))
     }
   },
   watch: {
