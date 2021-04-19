@@ -6,6 +6,8 @@
       :id="singleForm.id"
       :totalPages="pages"
       :totalId="totalId"
+      :nextPage="nextPage"
+      :previousPage="previousPage"
       @FormTopIDChangeHandler="handleParentSwitchPage"
       @LogSingleFormHandler="handleLogSingleForm"
       @LogAllFormHandler="handleLogAllForm"
@@ -121,12 +123,14 @@ export default {
       currentPage: 1,
       pages: [],
       totalId: [],
-      IndexAndId: [
-        {
-          id: '',
-          index: ''
-        }
-      ]
+      nextPage: {
+        index: '1',
+        id: 'A0000002'
+      },
+      previousPage: {
+        index: '',
+        id: ''
+      }
     }
   },
   methods: {
@@ -220,6 +224,39 @@ export default {
           }
         }
       )
+    }
+  },
+  watch: {
+    currentPage () {
+      for (let index = 0; index < this.$data.infoAndOrderArray.length; index++) {
+        if (this.$data.currentPage === index + 1) {
+          if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
+            this.$data.nextPage.id = ''
+            this.$data.nextPage.index = ''
+            this.$data.previousPage.index = index - 1
+            this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+            console.log(this.previousPage)
+            console.log(this.$data.nextPage)
+            return
+          }
+          if (this.$data.currentPage === 1) {
+            this.previousPage.id = ''
+            this.previousPage.index = ''
+            this.$data.nextPage.index = index + 1
+            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
+            console.log(this.previousPage)
+            console.log(this.$data.nextPage)
+            return
+          }
+          console.log('we found next page in watch: ' + index)
+          this.$data.nextPage.index = index + 1
+          this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
+          console.log(this.$data.nextPage)
+          this.$data.previousPage.index = index - 1
+          this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+          console.log(this.$data.previousPage)
+        }
+      }
     }
   },
   // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started

@@ -85,6 +85,9 @@
             <button
               type="button"
               class="page-link"
+              data-toggle="tooltip"
+              data-placement="right"
+              :title= previousPage.id
               @click="hanldleCurentPagedecrease"
             >
               Previous
@@ -99,13 +102,16 @@
               :title= idSingle
               @click="$emit('handleSwitchPageDownside', idSingle)"
             >
-              {{ idSingle }}
+              {{ totalId.indexOf(idSingle) + 1 }}
             </button>
           </li>
           <li class="page-item">
             <button
               type="button"
               class="page-link"
+              data-toggle="tooltip"
+              data-placement="right"
+              :title= nextPage.id
               @click="hanldleCurentPageIncrement"
             >
               Next
@@ -151,6 +157,14 @@ export default {
     },
     totalId: {
       type: Array
+    },
+    previousPage: {
+      type: Object,
+      default: () => {}
+    },
+    nextPage: {
+      type: Object,
+      default: () => {}
     }
   },
   data () {
