@@ -133,11 +133,87 @@ export default {
       }
     }
   },
+  // use computed to dynamic switch props
+  computed: {
+    singleForm () {
+      return (
+        this.$data.infoAndOrderArray[this.currentPage - 1] || {
+          id: '',
+          personal_info: {
+            first_name: '',
+            last_name: '',
+            gender: 0,
+            address: '',
+            is_homeless: false,
+            job: null,
+            note: ''
+          },
+          orders: {
+            apple_count: 0,
+            banana_condiments: []
+          }
+        }
+      )
+    }
+  },
+  watch: {
+    currentPage () {
+      for (let index = 0; index < this.$data.infoAndOrderArray.length; index++) {
+        if (this.$data.currentPage === index + 1) {
+          if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
+            this.$data.nextPage.id = ''
+            this.$data.nextPage.index = ''
+            this.$data.previousPage.index = index - 1
+            this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+            console.log(this.previousPage)
+            console.log(this.$data.nextPage)
+            return
+          }
+          if (this.$data.currentPage === 1) {
+            this.previousPage.id = ''
+            this.previousPage.index = ''
+            this.$data.nextPage.index = index + 1
+            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
+            console.log(this.previousPage)
+            console.log(this.$data.nextPage)
+            return
+          }
+          console.log('we found next page in watch: ' + index)
+          this.$data.nextPage.index = index + 1
+          this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
+          console.log(this.$data.nextPage)
+          this.$data.previousPage.index = index - 1
+          this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+          console.log(this.$data.previousPage)
+        }
+      }
+    },
+    // watch deep to array see https://michaelnthiessen.com/how-to-watch-nested-data-vue/
+    infoAndOrderArray: {
+      handler (val, oldVal) {
+        console.log('infoAndOrderArray changed')
+        this.setPages()
+      },
+      deep: true
+    }
+  },
+  created () {
+    this.setPages()
+  },
   methods: {
     setPages () {
+      this.$data.totalId = []
+      this.$data.pages = []
       for (let index = 1; index <= this.infoAndOrderArray.length; index++) {
-        this.pages.push(index)
+        this.$data.pages.push(index)
       }
+      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
+      for (let i = 0; i < this.$data.infoAndOrderArray.length; i++) {
+        this.$data.totalId.push(this.$data.infoAndOrderArray[i].id)
+      }
+      console.log(this.$data.totalId)
+      console.log(this.$data.pages)
+      console.log(this.setPages)
     },
     hanldleCurentPageIncrement () {
       if (this.$data.currentPage < this.$data.pages.length) {
@@ -202,73 +278,8 @@ export default {
       console.log(foundedId)
       this.$data.currentPage = foundedId + 1
     }
-  },
-  // use computed to dynamic switch props
-  computed: {
-    singleForm () {
-      return (
-        this.$data.infoAndOrderArray[this.currentPage - 1] || {
-          id: '',
-          personal_info: {
-            first_name: '',
-            last_name: '',
-            gender: 0,
-            address: '',
-            is_homeless: false,
-            job: null,
-            note: ''
-          },
-          orders: {
-            apple_count: 0,
-            banana_condiments: []
-          }
-        }
-      )
-    }
-  },
-  watch: {
-    currentPage () {
-      for (let index = 0; index < this.$data.infoAndOrderArray.length; index++) {
-        if (this.$data.currentPage === index + 1) {
-          if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
-            this.$data.nextPage.id = ''
-            this.$data.nextPage.index = ''
-            this.$data.previousPage.index = index - 1
-            this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
-            console.log(this.previousPage)
-            console.log(this.$data.nextPage)
-            return
-          }
-          if (this.$data.currentPage === 1) {
-            this.previousPage.id = ''
-            this.previousPage.index = ''
-            this.$data.nextPage.index = index + 1
-            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-            console.log(this.previousPage)
-            console.log(this.$data.nextPage)
-            return
-          }
-          console.log('we found next page in watch: ' + index)
-          this.$data.nextPage.index = index + 1
-          this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-          console.log(this.$data.nextPage)
-          this.$data.previousPage.index = index - 1
-          this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
-          console.log(this.$data.previousPage)
-        }
-      }
-    }
-  },
-  // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
-  created () {
-    this.setPages()
-    console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
-    for (let i = 0; i < this.$data.infoAndOrderArray.length; i++) {
-      this.$data.totalId.push(this.$data.infoAndOrderArray[i].id)
-    }
-    console.log(this.$data.totalId)
-    console.log(this.pages)
   }
+  // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
 }
 </script>
 
