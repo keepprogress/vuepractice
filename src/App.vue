@@ -1,31 +1,19 @@
 <template>
   <div class="app">
     <form-parent-component
-    :personalInfo="singleForm.personal_info"
-    :order="singleForm.orders"
-    :id="singleForm.id"
-    :totalPages="pages"
-    :totalId="totalId"
-    @FormTopIDChangeHandler="handleParentSwitchPage"
-    @LogSingleFormHandler="handleLogSingleForm"
-    @LogAllFormHandler="handleLogAllForm"
-    @DeleteSingleFormHandler="handleDeleteSingleForm"
+      :personalInfo="singleForm.personal_info"
+      :order="singleForm.orders"
+      :id="singleForm.id"
+      :totalPages="pages"
+      :totalId="totalId"
+      @FormTopIDChangeHandler="handleParentSwitchPage"
+      @LogSingleFormHandler="handleLogSingleForm"
+      @LogAllFormHandler="handleLogAllForm"
+      @DeleteSingleFormHandler="handleDeleteSingleForm"
+      @hanldleCurentPagedecrease="hanldleCurentPagedecrease"
+      @hanldleCurentPageIncrement="hanldleCurentPageIncrement"
+      @handleSwitchPageDownside="handleSwitchPageDownside"
     />
-    <div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <button type="button" class="page-link" @click="hanldleCurentPagedecrease">Previous</button>
-        </li>
-        <li class="page-item" v-for="page in pages" v-bind:key="page">
-          <button type="button" class="page-link" data-toggle="tooltip" data-placement="right" title="Tooltip on top" @click="this.$data.currentPage = page"> {{ page }}</button>
-        </li>
-        <li class="page-item">
-          <button type="button" class="page-link" @click="hanldleCurentPageIncrement">Next</button>
-        </li>
-      </ul>
-    </nav>
-  </div>
   </div>
 </template>
 
@@ -42,16 +30,15 @@ export default {
       infoAndOrderArray: [
         {
           id: 'A0000001',
-          personal_info:
-            {
-              first_name: 'Fishman',
-              last_name: 'ILike',
-              gender: 1,
-              address: 'ABCDEFG',
-              is_homeless: false,
-              job: null,
-              note: null
-            },
+          personal_info: {
+            first_name: 'Fishman',
+            last_name: 'ILike',
+            gender: 1,
+            address: 'ABCDEFG',
+            is_homeless: false,
+            job: null,
+            note: null
+          },
           orders: {
             apple_count: 1,
             banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
@@ -102,7 +89,16 @@ export default {
           },
           orders: {
             apple_count: 100,
-            banana_condiments: ['chocolate', 'strawberry', 'flax', 'miso', 'chili', 'garlic', 'soy_sauce', 'thick_soy_sauce']
+            banana_condiments: [
+              'chocolate',
+              'strawberry',
+              'flax',
+              'miso',
+              'chili',
+              'garlic',
+              'soy_sauce',
+              'thick_soy_sauce'
+            ]
           }
         },
         {
@@ -174,6 +170,19 @@ export default {
       }
       console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
     },
+    handleSwitchPageDownside (e) {
+      console.log(e)
+      const arr = this.$data.infoAndOrderArray
+      let foundedId = 0
+      for (let index = 0; index < arr.length; index++) {
+        if (arr[index].id === e) {
+          console.log('we found ' + arr[index].id)
+          foundedId = index
+        }
+      }
+      console.log(foundedId)
+      this.$data.currentPage = foundedId + 1
+    },
     // which page to change depending on currentPage so handleParentSwitchPage will find index in this.$data.infoAndOrderArray
     // and send it to foundedId if the selected id value is matched with this.$data.infoAndOrderArray
     handleParentSwitchPage (e) {
@@ -193,22 +202,24 @@ export default {
   // use computed to dynamic switch props
   computed: {
     singleForm () {
-      return this.$data.infoAndOrderArray[this.currentPage - 1] || {
-        id: '',
-        personal_info: {
-          first_name: '',
-          last_name: '',
-          gender: 0,
-          address: '',
-          is_homeless: false,
-          job: null,
-          note: ''
-        },
-        orders: {
-          apple_count: 0,
-          banana_condiments: []
+      return (
+        this.$data.infoAndOrderArray[this.currentPage - 1] || {
+          id: '',
+          personal_info: {
+            first_name: '',
+            last_name: '',
+            gender: 0,
+            address: '',
+            is_homeless: false,
+            job: null,
+            note: ''
+          },
+          orders: {
+            apple_count: 0,
+            banana_condiments: []
+          }
         }
-      }
+      )
     }
   },
   // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started

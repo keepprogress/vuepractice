@@ -4,7 +4,7 @@
       <h5>Form {{ id }}</h5>
       <h5>跳至,
         <!-- use v-bind to oneWay Binding value in 'id' props -->
-        <select class="form-select" aria-label="Default select example" v-bind:value="this.id" @change="FormTopIDChangeHandler">
+        <select class="form-select" aria-label="Default select example" @change="FormTopIDChangeHandler">
           <option v-for="idSingle in totalId" v-bind:key="idSingle">{{ idSingle }}</option>
         </select>共{{ totalPages.length }}張</h5>
         {{ totalId }}
@@ -78,6 +78,42 @@
           <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
         </div>
         <div>{{ this.order }}</div>
+        <div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <button
+              type="button"
+              class="page-link"
+              @click="hanldleCurentPagedecrease"
+            >
+              Previous
+            </button>
+          </li>
+          <li class="page-item" v-for="idSingle in totalId" v-bind:key="idSingle">
+            <button
+              type="button"
+              class="page-link"
+              data-toggle="tooltip"
+              data-placement="right"
+              :title= idSingle
+              @click="$emit('handleSwitchPageDownside', idSingle)"
+            >
+              {{ idSingle }}
+            </button>
+          </li>
+          <li class="page-item">
+            <button
+              type="button"
+              class="page-link"
+              @click="hanldleCurentPageIncrement"
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
         <!-- <keep-alive>
           <component :is="current"></component>
         </keep-alive> -->
@@ -171,6 +207,12 @@ export default {
     },
     DeleteSingleFormHandler () {
       this.$emit('DeleteSingleFormHandler')
+    },
+    hanldleCurentPagedecrease () {
+      this.$emit('hanldleCurentPagedecrease')
+    },
+    hanldleCurentPageIncrement () {
+      this.$emit('hanldleCurentPageIncrement')
     }
   },
   watch: {
