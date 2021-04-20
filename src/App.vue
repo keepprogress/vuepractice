@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <form-parent-component
+    <CartForm
       :personalInfo="singleForm.personal_info"
       :order="singleForm.orders"
       :id="singleForm.id"
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import FormParentComponent from './components/FormParentComponent.vue'
+import CartForm from './components/CartForm.vue'
 
 export default {
   name: 'App',
   components: {
-    FormParentComponent
+    CartForm
   },
   data () {
     return {

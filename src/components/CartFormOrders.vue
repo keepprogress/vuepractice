@@ -15,7 +15,7 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" v-bind:value="orders.apple_count"
+        <input type="number" id="applenum" name="applenum" :value="orders.apple_count"
        min="1" max="10000">
       </div>
       <div class="col">
@@ -85,16 +85,16 @@ export default {
   },
   methods: {
     handlePlusOneClick () {
-      this.$emit('handlePlusOneClick')
+      this.$emit('handle-plus-one-click')
     },
     handleMinusOneClick () {
-      this.$emit('handleMinusOneClick')
+      this.$emit('handle-minus-one-click')
     },
     handlePlusFiveClick () {
-      this.$emit('handlePlusFiveClick')
+      this.$emit('handle-plus-five-click')
     },
     handleMinusFiveClick () {
-      this.$emit('handleMinusFiveClick')
+      this.$emit('handle-minus-five-click')
     }
   },
   computed: {

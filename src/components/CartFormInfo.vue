@@ -29,7 +29,7 @@
     </div>
     <div class="row">
       <div>
-        <h6 class="ml-3">gender</h6>
+        <h3 class="ml-3">gender</h3>
       </div>
       <div class="col-sm text-left">
         <div class="form-check">
@@ -86,7 +86,7 @@
           value=""
           id="flexCheckDefault"
           v-model="component_value.is_homeless"
-          v-on:input="deleteAddress"
+          @input="deleteAddress"
         />
         <label class="form-check-label" for="flexCheckDefault">
           此客戶居無定所

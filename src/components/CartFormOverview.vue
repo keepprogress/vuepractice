@@ -7,7 +7,7 @@
             <li>{{ orders.apple_count }}顆蘋果</li>
             <li>香蕉配料</li>
                 <ul>
-                    <li v-for="condiment in VisualMandarinCondiment" v-bind:key="condiment">{{ condiment }}</li>
+                    <li v-for="condiment in VisualMandarinCondiment" :key="condiment">{{ condiment }}</li>
                 </ul>
         </ul>
     </div>

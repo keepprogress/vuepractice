@@ -1,12 +1,12 @@
 <template>
   <div class="parent">
     <div class="container">
-      <h5>Form {{ id }}</h5>
-      <h5>跳至,
+      <h1>Form {{ id }}</h1>
+      <h2>跳至,
         <!-- use v-bind to oneWay Binding value in 'id' props -->
         <select class="form-select" aria-label="Default select example" @change="FormTopIDChangeHandler">
-          <option v-for="idSingle in totalId" v-bind:key="idSingle">{{ idSingle }}</option>
-        </select>共{{ totalPages.length }}張</h5>
+          <option v-for="idSingle in totalId" :key="idSingle">{{ idSingle }}</option>
+        </select>共{{ totalPages.length }}張</h2>
         {{ totalId }}
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">Log this Form</button>
@@ -47,23 +47,23 @@
           </ul>
         </div>
         <keep-alive>
-          <Info
+          <CartFormInfo
           v-if="current === 'Info'"
           :childInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
         <keep-alive>
-          <Orders
+          <CartFormOrders
           v-if="current === 'Orders'"
           :orders="this.$data.infoAndOrder.orders"
-          v-on:handlePlusOneClick="PlusOneParent"
-          v-on:handleMinusOneClick="MinusOneParent"
-          v-on:handlePlusFiveClick="PlusFiveParent"
-          v-on:handleMinusFiveClick="MinusFiveParent"
+          @handlePlusOneClick="PlusOneParent"
+          @handleMinusOneClick="MinusOneParent"
+          @handlePlusFiveClick="PlusFiveParent"
+          @handleMinusFiveClick="MinusFiveParent"
           />
         </keep-alive>
         <keep-alive>
-          <Overview v-if="current === 'Overview'"
+          <CartFormOverview v-if="current === 'Overview'"
           :orders="this.$data.infoAndOrder.orders"/>
         </keep-alive>
         <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>
@@ -93,7 +93,7 @@
               Previous
             </button>
           </li>
-          <li class="page-item" v-for="idSingle in totalId" v-bind:key="idSingle">
+          <li class="page-item" v-for="idSingle in totalId" :key="idSingle">
             <button
               type="button"
               class="page-link"
@@ -129,16 +129,16 @@
 </template>
 
 <script>
-import Info from '@/components/Info.vue'
-import Orders from '@/components/Orders.vue'
-import Overview from '@/components/Overview.vue'
+import CartFormInfo from '@/components/CartFormInfo.vue'
+import CartFormOrders from '@/components/CartFormOrders.vue'
+import CartFormOverview from '@/components/CartFormOverview.vue'
 
 export default {
   name: 'com1',
   components: {
-    Info,
-    Orders,
-    Overview
+    CartFormInfo,
+    CartFormOrders,
+    CartFormOverview
   },
   props: {
     order: {
