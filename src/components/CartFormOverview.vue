@@ -15,6 +15,16 @@
 
 <script>
 export default {
+  props: {
+    orders: {
+      type: Object,
+      default: () => {}
+    },
+    childInfo: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data () {
     return {
       Orders: {
@@ -34,16 +44,6 @@ export default {
         herbal_cream: '百草膏'
       },
       bananaIsEmpty: false
-    }
-  },
-  props: {
-    orders: {
-      type: Object,
-      default: () => {}
-    },
-    childInfo: {
-      type: Object,
-      default: () => {}
     }
   },
   computed: {

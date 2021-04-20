@@ -19,28 +19,28 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: current == 'Info' }"
+                :class="{ active: currentFormTab == 'Info' }"
                 aria-current="page"
                 href="#"
-                @click.prevent="current = 'Info'"
+                @click.prevent="currentFormTab = 'Info'"
                 >Personal Info</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: current == 'Orders' }"
+                :class="{ active: currentFormTab == 'Orders' }"
                 href="#"
-                @click.prevent="current = 'Orders'"
+                @click.prevent="currentFormTab = 'Orders'"
                 >Orders</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: current == 'Overview' }"
+                :class="{ active: currentFormTab == 'Overview' }"
                 href="#"
-                @click.prevent="current = 'Overview'"
+                @click.prevent="currentFormTab = 'Overview'"
                 >Overview</a
               >
             </li>
@@ -48,13 +48,13 @@
         </div>
         <keep-alive>
           <CartFormInfo
-          v-if="current === 'Info'"
+          v-if="currentFormTab === 'Info'"
           :childInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
         <keep-alive>
           <CartFormOrders
-          v-if="current === 'Orders'"
+          v-if="currentFormTab === 'Orders'"
           :orders="this.$data.infoAndOrder.orders"
           @handlePlusOneClick="PlusOneParent"
           @handleMinusOneClick="MinusOneParent"
@@ -64,7 +64,7 @@
           />
         </keep-alive>
         <keep-alive>
-          <CartFormOverview v-if="current === 'Overview'"
+          <CartFormOverview v-if="currentFormTab === 'Overview'"
           :orders="this.$data.infoAndOrder.orders"
           :childInfo="this.$data.infoAndOrder.personal_info"
           />
@@ -176,8 +176,7 @@ export default {
   },
   data () {
     return {
-      current: 'Info',
-      strLength: 0,
+      currentFormTab: 'Info',
       infoAndOrder: {
         id: 'A0000001',
         personal_info: {
@@ -196,18 +195,29 @@ export default {
       }
     }
   },
+  watch: {
+    personalInfo () {
+      this.$data.infoAndOrder.personal_info = this.personalInfo
+    },
+    order () {
+      this.$data.infoAndOrder.orders = this.order
+    },
+    id () {
+      this.$data.id = this.id
+    }
+  },
   methods: {
-    PlusOneParent: function () {
+    PlusOneParent () {
       if (this.$data.infoAndOrder.orders.apple_count < 100) {
         this.$data.infoAndOrder.orders.apple_count++
       }
     },
-    MinusOneParent: function () {
+    MinusOneParent () {
       if (this.$data.infoAndOrder.orders.apple_count > 0) {
         this.$data.infoAndOrder.orders.apple_count--
       }
     },
-    PlusFiveParent: function () {
+    PlusFiveParent () {
       if (this.$data.infoAndOrder.orders.apple_count < 96) {
         this.$data.infoAndOrder.orders.apple_count += 5
       }
@@ -241,17 +251,6 @@ export default {
     },
     hanldleCurentPageIncrement () {
       this.$emit('hanldleCurentPageIncrement')
-    }
-  },
-  watch: {
-    personalInfo () {
-      this.$data.infoAndOrder.personal_info = this.personalInfo
-    },
-    order () {
-      this.$data.infoAndOrder.orders = this.order
-    },
-    id () {
-      this.$data.id = this.id
     }
   }
 }

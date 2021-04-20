@@ -104,7 +104,7 @@
     </div>
     <div class="text-left">
       <h6 class="mt-3">Note</h6>
-      <h6>{{ countStr }} / 2000 characters</h6>
+      <h6>{{ countNoteStr }} / 2000 characters</h6>
       <textarea
         class="form-control"
         aria-label="With textarea"
@@ -130,8 +130,8 @@ export default {
     }
   },
   computed: {
-    countStr () {
-      if (this.childInfo.note === null) {
+    countNoteStr () {
+      if (!this.childInfo.note) {
         return 0
       }
       const str = this.component_value.note

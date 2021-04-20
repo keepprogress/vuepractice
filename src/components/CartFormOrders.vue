@@ -82,6 +82,11 @@ export default {
       testCheckBox: ['chocolate', 'garlic']
     }
   },
+  computed: {
+    component_value () {
+      return this.orders
+    }
+  },
   methods: {
     handlePlusOneClick () {
       this.$emit('handle-plus-one-click')
@@ -97,11 +102,6 @@ export default {
     },
     handleOrderAppleInput (e) {
       this.$emit('handle-order-apple-input', e)
-    }
-  },
-  computed: {
-    component_value () {
-      return this.orders
     }
   }
 }
