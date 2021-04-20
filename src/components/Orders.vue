@@ -55,6 +55,14 @@
         <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="soy_sauce" v-model="component_value.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox7">醬油</label>
       </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="thick_soy_sauce" v-model="component_value.banana_condiments">
+        <label class="form-check-label" for="inlineCheckbox8">醬油膏</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="herbal_cream" v-model="component_value.banana_condiments">
+        <label class="form-check-label" for="inlineCheckbox9">百草膏</label>
+      </div>
     </div>
     {{ testCheckBox }}
   </div>

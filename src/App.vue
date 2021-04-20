@@ -188,7 +188,9 @@ export default {
         }
       }
     },
-    // watch deep to array see https://michaelnthiessen.com/how-to-watch-nested-data-vue/
+    // when you watch an array or an object, Vue has no idea that you've changed what's inside that prop.
+    // You have to tell Vue that you want it to inspect inside of the prop when watching for changes.
+    // see https://michaelnthiessen.com/how-to-watch-nested-data-vue/
     infoAndOrderArray: {
       handler (val, oldVal) {
         console.log('infoAndOrderArray changed')
