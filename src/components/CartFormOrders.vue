@@ -15,8 +15,8 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" :value="orders.apple_count"
-       min="1" max="10000">
+        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @change="handleOrderAppleInput"
+       min="1" max="100">
       </div>
       <div class="col">
         <button type="button" @click="handleMinusOneClick" class="btn btn-light">-1</button>
@@ -64,7 +64,6 @@
         <label class="form-check-label" for="inlineCheckbox9">百草膏</label>
       </div>
     </div>
-    {{ testCheckBox }}
   </div>
 </template>>
 
@@ -95,6 +94,9 @@ export default {
     },
     handleMinusFiveClick () {
       this.$emit('handle-minus-five-click')
+    },
+    handleOrderAppleInput (e) {
+      this.$emit('handle-order-apple-input', e)
     }
   },
   computed: {

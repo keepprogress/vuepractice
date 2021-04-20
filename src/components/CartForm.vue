@@ -60,6 +60,7 @@
           @handleMinusOneClick="MinusOneParent"
           @handlePlusFiveClick="PlusFiveParent"
           @handleMinusFiveClick="MinusFiveParent"
+          @handleOrderAppleInput="handleOrderAppleInput"
           />
         </keep-alive>
         <keep-alive>
@@ -197,7 +198,7 @@ export default {
   },
   methods: {
     PlusOneParent: function () {
-      if (this.$data.infoAndOrder.orders.apple_count < 10000) {
+      if (this.$data.infoAndOrder.orders.apple_count < 100) {
         this.$data.infoAndOrder.orders.apple_count++
       }
     },
@@ -207,13 +208,20 @@ export default {
       }
     },
     PlusFiveParent: function () {
-      if (this.$data.infoAndOrder.orders.apple_count < 9995) {
+      if (this.$data.infoAndOrder.orders.apple_count < 96) {
         this.$data.infoAndOrder.orders.apple_count += 5
       }
     },
     MinusFiveParent () {
       if (this.$data.infoAndOrder.orders.apple_count > 4) {
         this.$data.infoAndOrder.orders.apple_count -= 5
+      }
+    },
+    handleOrderAppleInput (e) {
+      if (Math.round(e.target.value) <= 100) {
+        this.$data.infoAndOrder.orders.apple_count = Math.round(e.target.value)
+      } else if (e.target.value > 100) {
+        this.$data.infoAndOrder.orders.apple_count = 100
       }
     },
     FormTopIDChangeHandler (e) {
