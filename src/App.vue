@@ -8,6 +8,7 @@
       :totalId="totalId"
       :nextPage="nextPage"
       :previousPage="previousPage"
+      :infoAndOrderIsEmpty="infoAndOrderIsEmpty"
       @FormTopIDChangeHandler="handleParentSwitchPage"
       @LogSingleFormHandler="handleLogSingleForm"
       @LogAllFormHandler="handleLogAllForm"
@@ -130,7 +131,8 @@ export default {
       previousPage: {
         index: '',
         id: ''
-      }
+      },
+      infoAndOrderIsEmpty: false
     }
   },
   // use computed to dynamic switch props
@@ -192,15 +194,18 @@ export default {
     // You have to tell Vue that you want it to inspect inside of the prop when watching for changes.
     // see https://michaelnthiessen.com/how-to-watch-nested-data-vue/
     infoAndOrderArray: {
-      handler (val, oldVal) {
+      handler () {
         console.log('infoAndOrderArray changed')
+        if (this.$data.infoAndOrderArray[0]) {
+          this.$data.infoAndOrderIsEmpty = false
+        } else {
+          this.$data.infoAndOrderIsEmpty = true
+        }
         this.setPages()
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
-  },
-  created () {
-    this.setPages()
   },
   methods: {
     setPages () {

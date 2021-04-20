@@ -11,7 +11,7 @@
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">Log this Form</button>
         <button type="button" class="btn btn-info" @click="LogAllFormHandler">Log all forms</button>
-        <button type="button" class="btn btn-danger" @click="DeleteSingleFormHandler">Delete this form</button>
+        <button type="button" class="btn btn-danger" v-if="!this.infoAndOrderIsEmpty" @click="DeleteSingleFormHandler">Delete this form</button>
       </div>
       <div class="container">
         <div class="mb-3">
@@ -167,6 +167,10 @@ export default {
     nextPage: {
       type: Object,
       default: () => {}
+    },
+    infoAndOrderIsEmpty: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
