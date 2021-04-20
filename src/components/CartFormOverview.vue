@@ -5,7 +5,7 @@
         </h5>
         <ul>
             <li>{{ orders.apple_count }}顆蘋果</li>
-            <li>香蕉配料</li>
+            <li v-if="bananaIsEmpty">香蕉配料</li>
                 <ul>
                     <li v-for="condiment in VisualMandarinCondiment" :key="condiment">{{ condiment }}</li>
                 </ul>
@@ -32,7 +32,8 @@ export default {
         soy_sauce: '醬油',
         thick_soy_sauce: '醬油膏',
         herbal_cream: '百草膏'
-      }
+      },
+      bananaIsEmpty: false
     }
   },
   props: {
@@ -70,6 +71,11 @@ export default {
         this.$data.tempBanana = this.orders.banana_condiments
         console.log('receive prop to $data')
         console.log(this.$data.tempBanana)
+        if (!this.$data.tempBanana) {
+          this.$data.bananaIsEmpty = true
+        } else {
+          this.$data.bananaIsEmpty = false
+        }
       },
       deep: true,
       immediate: true
