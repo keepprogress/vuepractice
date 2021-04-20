@@ -1,7 +1,7 @@
 <template>
     <div class="text-left">
         <h5>
-            以下是某個人的訂單
+            以下是{{ info_full_name }}的訂單
         </h5>
         <ul>
             <li>{{ orders.apple_count }}顆蘋果</li>
@@ -39,6 +39,10 @@ export default {
     orders: {
       type: Object,
       default: () => {}
+    },
+    childInfo: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
@@ -51,6 +55,13 @@ export default {
       }
       console.log(b)
       return b
+    },
+    info_full_name () {
+      if (!this.childInfo.first_name & !this.childInfo.last_name) {
+        return 'unknown'
+      } else {
+        return this.childInfo.last_name + ' ' + this.childInfo.first_name
+      }
     }
   },
   watch: {
