@@ -109,6 +109,7 @@
         aria-label="With textarea"
         placeholder="Note Here"
         v-model="component_value.note"
+        maxlength="2000"
       ></textarea>
     </div>
   </div>
@@ -134,7 +135,7 @@ export default {
         return 0
       }
       const str = this.component_value.note
-      return str.trim().length
+      return str.length
     },
     component_value () {
       return this.customerInfo

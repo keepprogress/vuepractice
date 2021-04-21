@@ -280,6 +280,13 @@ export default {
       if (this.singleForm.orders.apple_count > 5) {
         this.singleForm.orders.apple_count -= 5
       }
+    },
+    handleOrderAndInput (e) {
+      if (Math.round(e.target.value) <= 100) {
+        this.singleForm.orders.apple_count = Math.round(e.target.value)
+      } else if (e.target.value > 100) {
+        this.singleForm.orders.apple_count = 100
+      }
     }
   }
 }

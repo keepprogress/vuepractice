@@ -205,23 +205,19 @@ export default {
   },
   methods: {
     PlusOneParent () {
-      this.$emit('plus-one-parent')
+      this.$emit('PlusOneParent')
     },
     MinusOneParent () {
-      this.$emit('minus-one-parent')
+      this.$emit('MinusOneParent')
     },
     PlusFiveParent () {
-      this.$emit('plus-five-parent')
+      this.$emit('PlusFiveParent')
     },
     MinusFiveParent () {
-      this.$emit('minus-five-parent')
+      this.$emit('MinusFiveParent')
     },
     handleOrderAppleInput (e) {
-      if (Math.round(e.target.value) <= 100) {
-        this.$data.infoAndOrder.orders.apple_count = Math.round(e.target.value)
-      } else if (e.target.value > 100) {
-        this.$data.infoAndOrder.orders.apple_count = 100
-      }
+      this.$emit('handleOrderAppleInput', e)
     },
     FormTopIDChangeHandler (e) {
       this.$emit('FormTopIDChangeHandler', (e))

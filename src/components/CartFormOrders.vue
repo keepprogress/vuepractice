@@ -11,7 +11,7 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @change="handleOrderAppleInput"
+        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @input="handleOrderAppleInput"
        min="1" max="100">
       </div>
       <div class="col">
@@ -77,8 +77,7 @@ export default {
   },
   data () {
     return {
-      counter: 1,
-      testCheckBox: ['chocolate', 'garlic']
+      counter: 1
     }
   },
   computed: {
@@ -88,19 +87,19 @@ export default {
   },
   methods: {
     handlePlusOneClick () {
-      this.$emit('handle-plus-one-click')
+      this.$emit('handlePlusOneClick')
     },
     handleMinusOneClick () {
-      this.$emit('handle-minus-one-click')
+      this.$emit('handleMinusOneClick')
     },
     handlePlusFiveClick () {
-      this.$emit('handle-plus-five-click')
+      this.$emit('handlePlusFiveClick')
     },
     handleMinusFiveClick () {
-      this.$emit('handle-minus-five-click')
+      this.$emit('handleMinusFiveClick')
     },
     handleOrderAppleInput (e) {
-      this.$emit('handle-order-apple-input', e)
+      this.$emit('handleOrderAppleInput', e)
     }
   }
 }
