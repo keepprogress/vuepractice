@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-right">
       <div class="col">
-        <p class="text-left">Apple</p>
+        <p class="text-left thick">Apple</p>
       </div>
       <div class="col">
         <button type="button" @click="handlePlusFiveClick" class="btn btn-light">+5</button>
@@ -22,7 +22,9 @@
       </div>
     </div>
     <div class="row">
-      <p>Banana</p>
+      <div class="col">
+      <p class="thick">Banana</p>
+      <p>配料</p>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate" v-model="Orders.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox1">巧克力醬</label>
@@ -59,6 +61,7 @@
         <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="herbal_cream" v-model="Orders.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox9">百草膏</label>
       </div>
+    </div>
     </div>
   </div>
 </template>>

@@ -28,7 +28,7 @@
     </div>
     <div class="row">
       <div>
-        <p class="ml-3">gender</p>
+        <p class="ml-3">Gender</p>
       </div>
       <div class="col-sm text-left">
         <div class="form-check">
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div class="pt-2 text-left">
-      <p class="mb-2">job</p>
+      <p class="mb-2">Job</p>
       <select class="form-select" aria-label="Default select example" v-model="component_value.job">
         <option value=null>保密</option>
         <option value="agent">調查員</option>
