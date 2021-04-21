@@ -1,11 +1,13 @@
 <template>
   <div class="parent">
     <div class="container">
-      <h1>Form {{ id }}</h1>
-      <h2>跳至,
+      <div class="container">
+      <p class="thick">Form {{ id }} </p>
+      <p>跳至
         <select class="form-select" aria-label="Default select example" @change="FormTopIDChangeHandler">
           <option v-for="idSingle in totalId" :key="idSingle">{{ idSingle }}</option>
-        </select>共{{ totalPages.length }}張</h2>
+        </select>,共{{ totalPages.length }}張</p>
+        </div>
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">Log this Form</button>
         <button type="button" class="btn btn-info" @click="LogAllFormHandler">Log all forms</button>
@@ -67,7 +69,7 @@
           :customerInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
-        <div>
+        <div class="mt-5">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item">
@@ -244,12 +246,19 @@ export default {
 </script>
 
 <style>
-#parent {
+.parent {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
+}
+p {
+  font-size: 16px;
+}
+p.thick {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
