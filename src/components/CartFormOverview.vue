@@ -20,7 +20,7 @@ export default {
       type: Object,
       default: () => {}
     },
-    childInfo: {
+    customerInfo: {
       type: Object,
       default: () => {}
     }
@@ -58,14 +58,14 @@ export default {
       return b
     },
     info_full_name () {
-      if (!this.childInfo.first_name & !this.childInfo.last_name) {
+      if (!this.customerInfo.first_name & !this.customerInfo.last_name) {
         return 'unknown'
-      } else if (!this.childInfo.first_name) {
-        return this.childInfo.last_name
-      } else if (!this.childInfo.last_name) {
-        return this.childInfo.first_name
+      } else if (!this.customerInfo.first_name) {
+        return this.customerInfo.last_name
+      } else if (!this.customerInfo.last_name) {
+        return this.customerInfo.first_name
       } else {
-        return this.childInfo.last_name + ' ' + this.childInfo.first_name
+        return this.customerInfo.last_name + ' ' + this.customerInfo.first_name
       }
     }
   },

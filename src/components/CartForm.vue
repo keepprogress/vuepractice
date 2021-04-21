@@ -49,7 +49,7 @@
         <keep-alive>
           <CartFormInfo
           v-if="currentFormTab === 'Info'"
-          :childInfo="this.$data.infoAndOrder.personal_info"
+          :customerInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
         <keep-alive>
@@ -66,7 +66,7 @@
         <keep-alive>
           <CartFormOverview v-if="currentFormTab === 'Overview'"
           :orders="this.$data.infoAndOrder.orders"
-          :childInfo="this.$data.infoAndOrder.personal_info"
+          :customerInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
         <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>

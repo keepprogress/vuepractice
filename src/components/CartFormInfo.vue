@@ -119,7 +119,7 @@
 export default {
   name: 'Info',
   props: {
-    childInfo: {
+    customerInfo: {
       type: Object,
       default: () => {}
     }
@@ -131,14 +131,14 @@ export default {
   },
   computed: {
     countNoteStr () {
-      if (!this.childInfo.note) {
+      if (!this.customerInfo.note) {
         return 0
       }
       const str = this.component_value.note
       return str.trim().length
     },
     component_value () {
-      return this.childInfo
+      return this.customerInfo
     }
   },
   methods: {

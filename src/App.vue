@@ -32,7 +32,7 @@
       <div class="col">
       <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
       </div>
-      <div>{{ this.order }}</div>
+      <div>{{ this.singleForm.orders }}</div>
   </div>
 </template>
 
