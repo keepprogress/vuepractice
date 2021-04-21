@@ -11,7 +11,7 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @input="handleOrderAppleInput"
+        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @change="handleOrderAppleInput"
        min="1" max="100">
       </div>
       <div class="col">
