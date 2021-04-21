@@ -4,7 +4,6 @@
       <div class="col-sm">
         <div class="form-group">
           <label for="FirstName">FirstName</label>
-          <!-- because v-model contains v-on and v-bind:value so v-on:change="$emit('input', $event.target.value)" is not necesarry -->
           <input
             type="text"
             class="form-control"

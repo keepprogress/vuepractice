@@ -3,11 +3,9 @@
     <div class="container">
       <h1>Form {{ id }}</h1>
       <h2>跳至,
-        <!-- use v-bind to oneWay Binding value in 'id' props -->
         <select class="form-select" aria-label="Default select example" @change="FormTopIDChangeHandler">
           <option v-for="idSingle in totalId" :key="idSingle">{{ idSingle }}</option>
         </select>共{{ totalPages.length }}張</h2>
-        {{ totalId }}
       <div class="p-2 col-sm">
         <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">Log this Form</button>
         <button type="button" class="btn btn-info" @click="LogAllFormHandler">Log all forms</button>
@@ -69,63 +67,48 @@
           :customerInfo="this.$data.infoAndOrder.personal_info"
           />
         </keep-alive>
-        <div>Here is parent component firstname {{ this.$data.infoAndOrder.personal_info.first_name }}</div>
-        <div>Here is parent component lastname {{ this.$data.infoAndOrder.personal_info.last_name }}</div>
-        <div>Here is parent component gender {{ this.$data.infoAndOrder.personal_info.gender }}</div>
-        <div>Here is parent component Address {{ this.$data.infoAndOrder.personal_info.address }}</div>
-        <div>Here is parent component Job {{ this.$data.infoAndOrder.personal_info.job }}</div>
-        <div>Here is parent component note {{ this.$data.infoAndOrder.personal_info.note }}</div>
-        <div>Here is parent component Apple count {{ this.$data.infoAndOrder.orders.apple_count }}</div>
-        <div>Here is parent component Banana Condiments {{ this.$data.infoAndOrder.orders.banana_condiments }}</div>
-        <div class="col">
-          <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
-        </div>
-        <div>{{ this.order }}</div>
         <div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <button
-              type="button"
-              class="page-link"
-              data-toggle="tooltip"
-              data-placement="right"
-              :title= previousPage.id
-              @click="hanldleCurentPagedecrease"
-            >
-              Previous
-            </button>
-          </li>
-          <li class="page-item" v-for="idSingle in totalId" :key="idSingle">
-            <button
-              type="button"
-              class="page-link"
-              data-toggle="tooltip"
-              data-placement="right"
-              :title= idSingle
-              @click="$emit('handleSwitchPageDownside', idSingle)"
-            >
-              {{ totalId.indexOf(idSingle) + 1 }}
-            </button>
-          </li>
-          <li class="page-item">
-            <button
-              type="button"
-              class="page-link"
-              data-toggle="tooltip"
-              data-placement="right"
-              :title= nextPage.id
-              @click="hanldleCurentPageIncrement"
-            >
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
-        <!-- <keep-alive>
-          <component :is="current"></component>
-        </keep-alive> -->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <button
+                  type="button"
+                  class="page-link"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  :title= previousPage.id
+                  @click="hanldleCurentPagedecrease"
+                >
+                Previous
+                </button>
+                </li>
+                <li class="page-item" v-for="idSingle in totalId" :key="idSingle">
+                <button
+                  type="button"
+                  class="page-link"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  :title= idSingle
+                  @click="$emit('handleSwitchPageDownside', idSingle)"
+                  >
+                  {{ totalId.indexOf(idSingle) + 1 }}
+                </button>
+                </li>
+                <li class="page-item">
+                <button
+                  type="button"
+                  class="page-link"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  :title= nextPage.id
+                  @click="hanldleCurentPageIncrement"
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>

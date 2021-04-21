@@ -21,18 +21,6 @@
       @hanldleCurentPageIncrement="hanldleCurentPageIncrement"
       @handleSwitchPageDownside="handleSwitchPageDownside"
     />
-      <div>Here is App component firstname {{ this.singleForm.personal_info.first_name }}</div>
-      <div>Here is App component lastname {{ this.singleForm.personal_info.last_name }}</div>
-      <div>Here is App component gender {{ this.singleForm.personal_info.gender }}</div>
-      <div>Here is App component Address {{ this.singleForm.personal_info.address }}</div>
-      <div>Here is App component Job {{ this.singleForm.personal_info.job }}</div>
-      <div>Here is App component note {{ this.singleForm.personal_info.note }}</div>
-      <div>Here is App component Apple count {{ this.singleForm.orders.apple_count }}</div>
-      <div>Here is App component Banana Condiments {{ this.singleForm.orders.banana_condiments }}</div>
-      <div class="col">
-      <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
-      </div>
-      <div>{{ this.singleForm.orders }}</div>
   </div>
 </template>
 
@@ -151,7 +139,6 @@ export default {
       infoAndOrderIsEmpty: false
     }
   },
-  // use computed to dynamic switch props
   computed: {
     singleForm () {
       return (
@@ -183,8 +170,6 @@ export default {
             this.$data.nextPage.index = ''
             this.$data.previousPage.index = index - 1
             this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
-            console.log(this.previousPage)
-            console.log(this.$data.nextPage)
             return
           }
           if (this.$data.currentPage === 1) {
@@ -192,26 +177,17 @@ export default {
             this.previousPage.index = ''
             this.$data.nextPage.index = index + 1
             this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-            console.log(this.previousPage)
-            console.log(this.$data.nextPage)
             return
           }
-          console.log('we found next page in watch: ' + index)
           this.$data.nextPage.index = index + 1
           this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-          console.log(this.$data.nextPage)
           this.$data.previousPage.index = index - 1
           this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
-          console.log(this.$data.previousPage)
         }
       }
     },
-    // when you watch an array or an object, Vue has no idea that you've changed what's inside that prop.
-    // You have to tell Vue that you want it to inspect inside of the prop when watching for changes.
-    // see https://michaelnthiessen.com/how-to-watch-nested-data-vue/
     infoAndOrderArray: {
       handler () {
-        console.log('infoAndOrderArray changed')
         if (this.$data.infoAndOrderArray[0]) {
           this.$data.infoAndOrderIsEmpty = false
         } else {
@@ -230,13 +206,9 @@ export default {
       for (let index = 1; index <= this.infoAndOrderArray.length; index++) {
         this.$data.pages.push(index)
       }
-      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
       for (let i = 0; i < this.$data.infoAndOrderArray.length; i++) {
         this.$data.totalId.push(this.$data.infoAndOrderArray[i].id)
       }
-      console.log(this.$data.totalId)
-      console.log(this.$data.pages)
-      console.log(this.setPages)
     },
     hanldleCurentPageIncrement () {
       if (this.$data.currentPage < this.$data.pages.length) {
@@ -260,45 +232,33 @@ export default {
         console.log('we have no customer!!')
       }
       if (arr.length > 0) {
-        console.log(this.singleForm.id)
         const singleFormTemp = this.singleForm.id
         for (let index = 0; index < arr.length; index++) {
           if (singleFormTemp === arr[index].id) {
-            console.log('we found item to delete' + arr[index].id)
             this.$data.infoAndOrderArray.splice(index, 1)
             this.$data.currentPage = 1
-            console.log(this.$data.infoAndOrderArray)
           }
         }
       }
-      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
     },
     handleSwitchPageDownside (e) {
-      console.log(e)
       const arr = this.$data.infoAndOrderArray
       let foundedId = 0
       for (let index = 0; index < arr.length; index++) {
         if (arr[index].id === e) {
-          console.log('we found ' + arr[index].id)
           foundedId = index
         }
       }
-      console.log(foundedId)
       this.$data.currentPage = foundedId + 1
     },
-    // which page to change depending on currentPage so handleParentSwitchPage will find index in this.$data.infoAndOrderArray
-    // and send it to foundedId if the selected id value is matched with this.$data.infoAndOrderArray
     handleParentSwitchPage (e) {
-      console.log(e.target.value)
       const arr = this.$data.infoAndOrderArray
       let foundedId = 0
       for (let index = 0; index < arr.length; index++) {
         if (arr[index].id === e.target.value) {
-          console.log('we found ' + arr[index].id)
           foundedId = index
         }
       }
-      console.log(foundedId)
       this.$data.currentPage = foundedId + 1
     },
     PlusOneParent () {
@@ -322,7 +282,6 @@ export default {
       }
     }
   }
-  // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
 }
 </script>
 

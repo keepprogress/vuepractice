@@ -54,7 +54,6 @@ export default {
           b.push(this.$data.compareBanana[this.$data.tempBanana[index]])
         }
       }
-      console.log(b)
       return b
     },
     info_full_name () {
@@ -73,8 +72,6 @@ export default {
     orders: {
       handler () {
         this.$data.tempBanana = this.orders.banana_condiments
-        console.log('receive prop to $data')
-        console.log(this.$data.tempBanana)
         if (!this.$data.tempBanana[0]) {
           this.$data.bananaIsEmpty = true
         } else {
