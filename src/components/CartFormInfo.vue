@@ -28,7 +28,7 @@
     </div>
     <div class="row">
       <div>
-        <h3 class="ml-3">gender</h3>
+        <p class="ml-3">gender</p>
       </div>
       <div class="col-sm text-left">
         <div class="form-check">
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div class="pt-2 text-left">
-      <h6 class="mb-2">job</h6>
+      <p class="mb-2">job</p>
       <select class="form-select" aria-label="Default select example" v-model="component_value.job">
         <option value=null>保密</option>
         <option value="agent">調查員</option>
@@ -102,8 +102,8 @@
       </select>
     </div>
     <div class="text-left">
-      <h6 class="mt-3">Note</h6>
-      <h6>{{ countNoteStr }} / 2000 characters</h6>
+      <p class="mt-3">Note</p>
+      <p>{{ countNoteStr }} / 2000 characters</p>
       <textarea
         class="form-control"
         aria-label="With textarea"
