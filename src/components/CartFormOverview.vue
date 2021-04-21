@@ -1,8 +1,8 @@
 <template>
     <div class="text-left">
-        <h5>
+        <p>
             以下是{{ info_full_name }}的訂單
-        </h5>
+        </p>
         <ul>
             <li>{{ orders.apple_count }}顆蘋果</li>
             <li v-if="!bananaIsEmpty">香蕉配料</li>

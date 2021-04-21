@@ -1,11 +1,8 @@
 <template>
   <div class="container">
-    <div>
-    <h1>This is Order Component</h1>
-  </div>
     <div class="row align-right">
       <div class="col">
-        <h5 class="text-left">Apple</h5>
+        <p class="text-left">Apple</p>
       </div>
       <div class="col">
         <button type="button" @click="handlePlusFiveClick" class="btn btn-light">+5</button>
@@ -25,7 +22,7 @@
       </div>
     </div>
     <div class="row">
-      <h5>Banana</h5>
+      <p>Banana</p>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="chocolate" v-model="Orders.banana_condiments">
         <label class="form-check-label" for="inlineCheckbox1">巧克力醬</label>
