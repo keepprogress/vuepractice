@@ -197,7 +197,7 @@ export default {
   },
   watch: {
     personalInfo: {
-      handle () {
+      handler () {
         this.$data.infoAndOrder.personal_info = this.personalInfo
       },
       deep: true,
