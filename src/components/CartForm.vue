@@ -189,43 +189,47 @@ export default {
           note: null
         },
         orders: {
-          apple_count: 20,
-          banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
+          apple_count: 99,
+          banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce', 'miso']
         }
       }
     }
   },
   watch: {
-    personalInfo () {
-      this.$data.infoAndOrder.personal_info = this.personalInfo
+    personalInfo: {
+      handle () {
+        this.$data.infoAndOrder.personal_info = this.personalInfo
+      },
+      deep: true,
+      immediate: true
     },
-    order () {
-      this.$data.infoAndOrder.orders = this.order
+    order: {
+      handler () {
+        this.$data.infoAndOrder.orders = this.order
+      },
+      deep: true,
+      immediate: true
     },
-    id () {
-      this.$data.id = this.id
+    id: {
+      handler () {
+        this.$data.id = this.id
+      },
+      deep: true,
+      immediate: true
     }
   },
   methods: {
     PlusOneParent () {
-      if (this.$data.infoAndOrder.orders.apple_count < 100) {
-        this.$data.infoAndOrder.orders.apple_count++
-      }
+      this.$emit('plus-one-parent')
     },
     MinusOneParent () {
-      if (this.$data.infoAndOrder.orders.apple_count > 0) {
-        this.$data.infoAndOrder.orders.apple_count--
-      }
+      this.$emit('minus-one-parent')
     },
     PlusFiveParent () {
-      if (this.$data.infoAndOrder.orders.apple_count < 96) {
-        this.$data.infoAndOrder.orders.apple_count += 5
-      }
+      this.$emit('plus-five-parent')
     },
     MinusFiveParent () {
-      if (this.$data.infoAndOrder.orders.apple_count > 4) {
-        this.$data.infoAndOrder.orders.apple_count -= 5
-      }
+      this.$emit('minus-five-parent')
     },
     handleOrderAppleInput (e) {
       if (Math.round(e.target.value) <= 100) {

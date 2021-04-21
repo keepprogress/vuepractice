@@ -9,6 +9,10 @@
       :nextPage="nextPage"
       :previousPage="previousPage"
       :infoAndOrderIsEmpty="infoAndOrderIsEmpty"
+      @PlusOneParent="PlusOneParent"
+      @MinusOneParent="MinusOneParent"
+      @PlusFiveParent="PlusFiveParent"
+      @MinusFiveParent="MinusFiveParent"
       @FormTopIDChangeHandler="handleParentSwitchPage"
       @LogSingleFormHandler="handleLogSingleForm"
       @LogAllFormHandler="handleLogAllForm"
@@ -17,6 +21,18 @@
       @hanldleCurentPageIncrement="hanldleCurentPageIncrement"
       @handleSwitchPageDownside="handleSwitchPageDownside"
     />
+      <div>Here is App component firstname {{ this.singleForm.personal_info.first_name }}</div>
+      <div>Here is App component lastname {{ this.singleForm.personal_info.last_name }}</div>
+      <div>Here is App component gender {{ this.singleForm.personal_info.gender }}</div>
+      <div>Here is App component Address {{ this.singleForm.personal_info.address }}</div>
+      <div>Here is App component Job {{ this.singleForm.personal_info.job }}</div>
+      <div>Here is App component note {{ this.singleForm.personal_info.note }}</div>
+      <div>Here is App component Apple count {{ this.singleForm.orders.apple_count }}</div>
+      <div>Here is App component Banana Condiments {{ this.singleForm.orders.banana_condiments }}</div>
+      <div class="col">
+      <button type="button" @click="PlusOneParent" class="btn btn-light">+1</button>
+      </div>
+      <div>{{ this.order }}</div>
   </div>
 </template>
 
@@ -284,6 +300,26 @@ export default {
       }
       console.log(foundedId)
       this.$data.currentPage = foundedId + 1
+    },
+    PlusOneParent () {
+      if (this.singleForm.orders.apple_count < 100) {
+        this.singleForm.orders.apple_count++
+      }
+    },
+    MinusOneParent () {
+      if (this.singleForm.orders.apple_count > 1) {
+        this.singleForm.orders.apple_count--
+      }
+    },
+    PlusFiveParent () {
+      if (this.singleForm.orders.apple_count < 96) {
+        this.singleForm.orders.apple_count += 5
+      }
+    },
+    MinusFiveParent () {
+      if (this.singleForm.orders.apple_count > 5) {
+        this.singleForm.orders.apple_count -= 5
+      }
     }
   }
   // assume that JSON data would just send once so put setPage in created() <<= would run once when this component be started
