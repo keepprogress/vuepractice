@@ -72,7 +72,7 @@
         <div class="mt-5">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <li class="page-item">
+              <li class="page-item" :class="{ disabled: this.previousPage.id === '' }">
                 <button
                   type="button"
                   class="page-link"
@@ -84,7 +84,7 @@
                 Previous
                 </button>
                 </li>
-                <li class="page-item" v-for="idSingle in totalId" :key="idSingle">
+                <li class="page-item" v-for="idSingle in totalId" :key="idSingle" :class="{ active: idSingle === this.$data.id }">
                 <button
                   type="button"
                   class="page-link"
@@ -96,7 +96,7 @@
                   {{ totalId.indexOf(idSingle) + 1 }}
                 </button>
                 </li>
-                <li class="page-item">
+                <li class="page-item" :class="{ disabled: this.nextPage.id === '' }">
                 <button
                   type="button"
                   class="page-link"
