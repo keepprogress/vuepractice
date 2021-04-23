@@ -37,6 +37,22 @@ export default {
     return {
       infoAndOrderArray: [
         {
+          id: 'A0000003',
+          personal_info: {
+            first_name: 'Painter',
+            last_name: null,
+            gender: 0,
+            address: null,
+            is_homeless: true,
+            job: 'agent_of_secret_agent',
+            note: 'Strange'
+          },
+          orders: {
+            apple_count: 1,
+            banana_condiments: ['herbal_cream']
+          }
+        },
+        {
           id: 'A0000001',
           personal_info: {
             first_name: 'Fishman',
@@ -69,19 +85,19 @@ export default {
           }
         },
         {
-          id: 'A0000003',
+          id: 'A0000005',
           personal_info: {
-            first_name: 'Painter',
-            last_name: null,
+            first_name: 'Pepper',
+            last_name: 'Dr.',
             gender: 0,
-            address: null,
-            is_homeless: true,
-            job: 'agent_of_secret_agent',
-            note: 'Strange'
+            address: 'Farm',
+            is_homeless: false,
+            job: 'agent',
+            note: '胡椒博士現身'
           },
           orders: {
-            apple_count: 1,
-            banana_condiments: ['herbal_cream']
+            apple_count: 5,
+            banana_condiments: ['chili', 'garlic']
           }
         },
         {
@@ -107,22 +123,6 @@ export default {
               'soy_sauce',
               'thick_soy_sauce'
             ]
-          }
-        },
-        {
-          id: 'A0000005',
-          personal_info: {
-            first_name: 'Pepper',
-            last_name: 'Dr.',
-            gender: 0,
-            address: 'Farm',
-            is_homeless: false,
-            job: 'agent',
-            note: '胡椒博士現身'
-          },
-          orders: {
-            apple_count: 5,
-            banana_condiments: ['chili', 'garlic']
           }
         }
       ],
@@ -164,13 +164,19 @@ export default {
   },
   watch: {
     currentPage () {
-      for (let index = 0; index < this.$data.infoAndOrderArray.length; index++) {
+      for (
+        let index = 0;
+        index < this.$data.infoAndOrderArray.length;
+        index++
+      ) {
         if (this.$data.currentPage === index + 1) {
           if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
             this.$data.nextPage.id = ''
             this.$data.nextPage.index = ''
             this.$data.previousPage.index = index - 1
-            this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+            this.$data.previousPage.id = this.$data.infoAndOrderArray[
+              index - 1
+            ].id
             return
           }
           if (this.$data.currentPage === 1) {
@@ -183,7 +189,9 @@ export default {
           this.$data.nextPage.index = index + 1
           this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
           this.$data.previousPage.index = index - 1
-          this.$data.previousPage.id = this.$data.infoAndOrderArray[index - 1].id
+          this.$data.previousPage.id = this.$data.infoAndOrderArray[
+            index - 1
+          ].id
         }
       }
     },
