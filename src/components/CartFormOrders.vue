@@ -78,8 +78,8 @@ export default {
       type: Object,
       default: () => {},
       required: false,
-      validator (obj) {
-        return obj.apple_count <= 100
+      validator: value => {
+        return value.apple_count <= 100
       }
     }
   },
@@ -92,6 +92,17 @@ export default {
   computed: {
     Orders () {
       return this.orders
+    }
+  },
+  watch: {
+    Orders: {
+      handler () {
+        if (this.Orders.apple_count > 100) {
+          this.Orders.apple_count = 100
+        }
+      },
+      deep: true,
+      immediate: true
     }
   },
   methods: {
