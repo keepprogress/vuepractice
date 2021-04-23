@@ -84,7 +84,7 @@
                 Previous
                 </button>
                 </li>
-                <li class="page-item" v-for="idSingle in totalId" :key="idSingle" :class="{ active: idSingle === this.$data.id }">
+                <li class="page-item" v-for="idSingle in totalId" :key="idSingle" :class="{ active: idSingle === id }">
                 <button
                   type="button"
                   class="page-link"
