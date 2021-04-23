@@ -99,6 +99,8 @@ export default {
       handler () {
         if (this.Orders.apple_count > 100) {
           this.Orders.apple_count = 100
+        } else if (this.Orders.apple_count < 1) {
+          this.Orders.apple_count = 1
         }
       },
       deep: true,
