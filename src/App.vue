@@ -9,6 +9,7 @@
       :nextPage="nextPage"
       :previousPage="previousPage"
       :infoAndOrderIsEmpty="infoAndOrderIsEmpty"
+      @handleOrderAppleInput="handleOrderAndInput"
       @PlusOneParent="PlusOneParent"
       @MinusOneParent="MinusOneParent"
       @PlusFiveParent="PlusFiveParent"
@@ -284,7 +285,7 @@ export default {
     handleOrderAndInput (e) {
       if (Math.round(e.target.value) <= 100) {
         this.singleForm.orders.apple_count = Math.round(e.target.value)
-      } else if (e.target.value > 100) {
+      } else if (Math.round(e.target.value) > 100) {
         this.singleForm.orders.apple_count = 100
       }
     }

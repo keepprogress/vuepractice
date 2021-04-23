@@ -217,7 +217,7 @@ export default {
       this.$emit('MinusFiveParent')
     },
     handleOrderAppleInput (e) {
-      this.$emit('handleOrderAppleInput', e)
+      this.$emit('handleOrderAppleInput', (e))
     },
     FormTopIDChangeHandler (e) {
       this.$emit('FormTopIDChangeHandler', (e))

@@ -11,8 +11,13 @@
         <button type="button" @click="handlePlusOneClick" class="btn btn-light">+1</button>
       </div>
       <div class="col">
-        <input type="number" id="applenum" name="applenum" :value="orders.apple_count" @change="handleOrderAppleInput"
-       min="1" max="100">
+        <input type="number"
+        id="applenum"
+        name="applenum"
+        v-bind:value="Orders.apple_count"
+        @change="handleOrderAppleInput"
+        :max="this.$data.maxAppleCount"
+        min="1">
       </div>
       <div class="col">
         <button type="button" @click="handleMinusOneClick" class="btn btn-light">-1</button>
@@ -72,12 +77,16 @@ export default {
     orders: {
       type: Object,
       default: () => {},
-      required: false
+      required: false,
+      validator (obj) {
+        return obj.apple_count <= 100
+      }
     }
   },
   data () {
     return {
-      counter: 1
+      counter: 1,
+      maxAppleCount: 100
     }
   },
   computed: {
