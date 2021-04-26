@@ -251,11 +251,11 @@ export default {
         }
       }
     },
-    handleSwitchPageDownside(e) {
+    handleSwitchPageDownside(idSingle) {
       const arr = this.$data.infoAndOrderArray;
       let foundedId = 0;
       for (let index = 0; index < arr.length; index += 1) {
-        if (arr[index].id === e) {
+        if (arr[index].id === idSingle) {
           foundedId = index;
         }
       }
