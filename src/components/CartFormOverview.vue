@@ -27,10 +27,6 @@ export default {
   },
   data() {
     return {
-      Orders: {
-        apple_count: 50,
-        banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce'],
-      },
       tempOrder: {},
       compareBanana: {
         chocolate: '巧克力醬',
