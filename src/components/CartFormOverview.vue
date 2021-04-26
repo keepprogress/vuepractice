@@ -48,15 +48,6 @@ export default {
     };
   },
   computed: {
-    // VisualMandarinCondiment () {
-    //   const b = []
-    //   for (let index = 0; index < this.$data.tempBanana.length; index++) {
-    //     if (this.$data.compareBanana[this.$data.tempBanana[index]]) {
-    //       b.push(this.$data.compareBanana[this.$data.tempBanana[index]])
-    //     }
-    //   }
-    //   return b
-    // },
     info_full_name() {
       if (!this.customerInfo.first_name.trim() && !this.customerInfo.last_name.trim()) {
         return 'unknown';
@@ -65,7 +56,6 @@ export default {
       } if (!this.customerInfo.last_name) {
         return this.customerInfo.first_name;
       }
-      // return `${this.customerInfo.last_name} ${this.customerInfo.first_name}`;
       return [this.customerInfo.last_name, ' ', this.customerInfo.first_name].join('');
     },
   },
