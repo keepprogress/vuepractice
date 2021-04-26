@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     info_full_name() {
-      if (!this.customerInfo.first_name.trim() && !this.customerInfo.last_name.trim()) {
+      if (!this.customerInfo.first_name && !this.customerInfo.last_name) {
         return 'unknown';
       } if (!this.customerInfo.first_name) {
         return this.customerInfo.last_name;
