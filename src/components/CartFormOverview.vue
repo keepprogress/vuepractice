@@ -58,7 +58,7 @@ export default {
     //   return b
     // },
     info_full_name() {
-      if (!this.customerInfo.first_name && !this.customerInfo.last_name) {
+      if (!this.customerInfo.first_name.trim() && !this.customerInfo.last_name.trim()) {
         return 'unknown';
       } if (!this.customerInfo.first_name) {
         return this.customerInfo.last_name;
