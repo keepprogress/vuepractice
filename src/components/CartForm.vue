@@ -152,49 +152,49 @@
 </template>
 
 <script>
-import CartFormInfo from '@/components/CartFormInfo.vue'
-import CartFormOrders from '@/components/CartFormOrders.vue'
-import CartFormOverview from '@/components/CartFormOverview.vue'
+import CartFormInfo from '@/components/CartFormInfo.vue';
+import CartFormOrders from '@/components/CartFormOrders.vue';
+import CartFormOverview from '@/components/CartFormOverview.vue';
 
 export default {
   name: 'com1',
   components: {
     CartFormInfo,
     CartFormOrders,
-    CartFormOverview
+    CartFormOverview,
   },
   props: {
     order: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     personalInfo: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     id: {
-      type: String
+      type: String,
     },
     totalPages: {
-      type: Array
+      type: Array,
     },
     totalId: {
-      type: Array
+      type: Array,
     },
     previousPage: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     nextPage: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     infoAndOrderIsEmpty: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
       currentFormTab: 'Info',
       infoAndOrder: {
@@ -206,7 +206,7 @@ export default {
           address: 'ABCDEFG',
           is_homeless: false,
           job: null,
-          note: null
+          note: null,
         },
         orders: {
           apple_count: 99,
@@ -215,72 +215,72 @@ export default {
             'chili',
             'garlic',
             'soy_sauce',
-            'miso'
-          ]
-        }
+            'miso',
+          ],
+        },
       },
-      fakeId: 'A0000004'
-    }
+      fakeId: 'A0000004',
+    };
   },
   watch: {
     personalInfo: {
-      handler () {
-        this.$data.infoAndOrder.personal_info = this.personalInfo
+      handler() {
+        this.$data.infoAndOrder.personal_info = this.personalInfo;
       },
       deep: true,
-      immediate: true
+      immediate: true,
     },
     order: {
-      handler () {
-        this.$data.infoAndOrder.orders = this.order
+      handler() {
+        this.$data.infoAndOrder.orders = this.order;
       },
       deep: true,
-      immediate: true
+      immediate: true,
     },
     id: {
-      handler () {
-        this.$data.id = this.id
+      handler() {
+        this.$data.id = this.id;
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
-    PlusOneParent () {
-      this.$emit('PlusOneParent')
+    PlusOneParent() {
+      this.$emit('PlusOneParent');
     },
-    MinusOneParent () {
-      this.$emit('MinusOneParent')
+    MinusOneParent() {
+      this.$emit('MinusOneParent');
     },
-    PlusFiveParent () {
-      this.$emit('PlusFiveParent')
+    PlusFiveParent() {
+      this.$emit('PlusFiveParent');
     },
-    MinusFiveParent () {
-      this.$emit('MinusFiveParent')
+    MinusFiveParent() {
+      this.$emit('MinusFiveParent');
     },
-    handleOrderAppleInput (e) {
-      this.$emit('handleOrderAppleInput', e)
+    handleOrderAppleInput(e) {
+      this.$emit('handleOrderAppleInput', e);
     },
-    FormTopIDChangeHandler (e) {
-      this.$emit('FormTopIDChangeHandler', e)
+    FormTopIDChangeHandler(e) {
+      this.$emit('FormTopIDChangeHandler', e);
     },
-    LogSingleFormHandler () {
-      this.$emit('LogSingleFormHandler')
+    LogSingleFormHandler() {
+      this.$emit('LogSingleFormHandler');
     },
-    LogAllFormHandler () {
-      this.$emit('LogAllFormHandler')
+    LogAllFormHandler() {
+      this.$emit('LogAllFormHandler');
     },
-    DeleteSingleFormHandler () {
-      this.$emit('DeleteSingleFormHandler')
+    DeleteSingleFormHandler() {
+      this.$emit('DeleteSingleFormHandler');
     },
-    hanldleCurentPagedecrease () {
-      this.$emit('hanldleCurentPagedecrease')
+    hanldleCurentPagedecrease() {
+      this.$emit('hanldleCurentPagedecrease');
     },
-    hanldleCurentPageIncrement () {
-      this.$emit('hanldleCurentPageIncrement')
-    }
-  }
-}
+    hanldleCurentPageIncrement() {
+      this.$emit('hanldleCurentPageIncrement');
+    },
+  },
+};
 </script>
 
 <style>

@@ -154,53 +154,51 @@ export default {
       type: Object,
       default: () => {},
       required: false,
-      validator: (value) => {
-        return value.apple_count <= 100
-      }
-    }
+      validator: (value) => value.apple_count <= 100,
+    },
   },
-  data () {
+  data() {
     return {
       counter: 1,
-      maxAppleCount: 100
-    }
+      maxAppleCount: 100,
+    };
   },
   computed: {
-    Orders () {
-      return this.orders
-    }
+    Orders() {
+      return this.orders;
+    },
   },
   watch: {
     Orders: {
-      handler () {
+      handler() {
         if (this.Orders.apple_count > 100) {
-          this.Orders.apple_count = 100
+          this.Orders.apple_count = 100;
         } else if (this.Orders.apple_count < 1) {
-          this.Orders.apple_count = 1
+          this.Orders.apple_count = 1;
         }
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
-    handlePlusOneClick () {
-      this.$emit('handlePlusOneClick')
+    handlePlusOneClick() {
+      this.$emit('handlePlusOneClick');
     },
-    handleMinusOneClick () {
-      this.$emit('handleMinusOneClick')
+    handleMinusOneClick() {
+      this.$emit('handleMinusOneClick');
     },
-    handlePlusFiveClick () {
-      this.$emit('handlePlusFiveClick')
+    handlePlusFiveClick() {
+      this.$emit('handlePlusFiveClick');
     },
-    handleMinusFiveClick () {
-      this.$emit('handleMinusFiveClick')
+    handleMinusFiveClick() {
+      this.$emit('handleMinusFiveClick');
     },
-    handleOrderAppleInput (e) {
-      this.$emit('handleOrderAppleInput', e)
-    }
-  }
-}
+    handleOrderAppleInput(e) {
+      this.$emit('handleOrderAppleInput', e);
+    },
+  },
+};
 </script>
 
 <style>

@@ -121,30 +121,30 @@ export default {
   props: {
     customerInfo: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  data () {
+  data() {
     return {
-      note: ''
-    }
+      note: '',
+    };
   },
   computed: {
-    countNoteStr () {
+    countNoteStr() {
       if (!this.customerInfo.note) {
-        return 0
+        return 0;
       }
-      const str = this.component_value.note
-      return str.length
+      const str = this.component_value.note;
+      return str.length;
     },
-    component_value () {
-      return this.customerInfo
-    }
+    component_value() {
+      return this.customerInfo;
+    },
   },
   methods: {
-    deleteAddress () {
-      this.component_value.address = ''
-    }
-  }
-}
+    deleteAddress() {
+      this.component_value.address = '';
+    },
+  },
+};
 </script>

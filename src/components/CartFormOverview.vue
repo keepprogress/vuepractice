@@ -18,18 +18,18 @@ export default {
   props: {
     orders: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     customerInfo: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  data () {
+  data() {
     return {
       Orders: {
         apple_count: 50,
-        banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
+        banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce'],
       },
       tempOrder: {},
       compareBanana: {
@@ -41,11 +41,11 @@ export default {
         garlic: '大蒜',
         soy_sauce: '醬油',
         thick_soy_sauce: '醬油膏',
-        herbal_cream: '百草膏'
+        herbal_cream: '百草膏',
       },
       bananaIsEmpty: false,
-      bananaCondimentView: []
-    }
+      bananaCondimentView: [],
+    };
   },
   computed: {
     // VisualMandarinCondiment () {
@@ -57,40 +57,40 @@ export default {
     //   }
     //   return b
     // },
-    info_full_name () {
-      if (!this.customerInfo.first_name & !this.customerInfo.last_name) {
-        return 'unknown'
-      } else if (!this.customerInfo.first_name) {
-        return this.customerInfo.last_name
-      } else if (!this.customerInfo.last_name) {
-        return this.customerInfo.first_name
-      } else {
-        return this.customerInfo.last_name + ' ' + this.customerInfo.first_name
+    info_full_name() {
+      if (!this.customerInfo.first_name && !this.customerInfo.last_name) {
+        return 'unknown';
+      } if (!this.customerInfo.first_name) {
+        return this.customerInfo.last_name;
+      } if (!this.customerInfo.last_name) {
+        return this.customerInfo.first_name;
       }
-    }
+      // return `${this.customerInfo.last_name} ${this.customerInfo.first_name}`;
+      return [this.customerInfo.last_name, ' ', this.customerInfo.first_name].join('');
+    },
   },
   watch: {
     orders: {
-      handler () {
-        const b = []
-        this.$data.tempBanana = this.orders.banana_condiments
+      handler() {
+        const b = [];
+        this.$data.tempBanana = this.orders.banana_condiments;
         if (!this.$data.tempBanana[0]) {
-          this.$data.bananaIsEmpty = true
+          this.$data.bananaIsEmpty = true;
         } else {
-          this.$data.bananaIsEmpty = false
+          this.$data.bananaIsEmpty = false;
         }
-        for (let index = 0; index < this.$data.tempBanana.length; index++) {
+        for (let index = 0; index < this.$data.tempBanana.length; index += 1) {
           if (this.$data.compareBanana[this.$data.tempBanana[index]]) {
-            b.push(this.$data.compareBanana[this.$data.tempBanana[index]])
+            b.push(this.$data.compareBanana[this.$data.tempBanana[index]]);
           }
         }
-        this.$data.bananaCondimentView = b
+        this.$data.bananaCondimentView = b;
       },
       deep: true,
-      immediate: true
-    }
-  }
-}
+      immediate: true,
+    },
+  },
+};
 </script>
 
 <style>

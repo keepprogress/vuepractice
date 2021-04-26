@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import CartForm from './components/CartForm.vue'
+import CartForm from './components/CartForm.vue';
 
 export default {
   name: 'App',
   components: {
-    CartForm
+    CartForm,
   },
-  data () {
+  data() {
     return {
       infoAndOrderArray: [
         {
@@ -45,12 +45,12 @@ export default {
             address: null,
             is_homeless: true,
             job: 'agent_of_secret_agent',
-            note: 'Strange'
+            note: 'Strange',
           },
           orders: {
             apple_count: 1,
-            banana_condiments: ['herbal_cream']
-          }
+            banana_condiments: ['herbal_cream'],
+          },
         },
         {
           id: 'A0000001',
@@ -61,12 +61,12 @@ export default {
             address: 'ABCDEFG',
             is_homeless: false,
             job: null,
-            note: null
+            note: null,
           },
           orders: {
             apple_count: 1,
-            banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce']
-          }
+            banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce'],
+          },
         },
         {
           id: 'A0000002',
@@ -77,12 +77,12 @@ export default {
             address: 'QWERTY',
             is_homeless: false,
             job: 'secret_agent',
-            note: 'Hello, world'
+            note: 'Hello, world',
           },
           orders: {
             apple_count: 15,
-            banana_condiments: []
-          }
+            banana_condiments: [],
+          },
         },
         {
           id: 'A0000005',
@@ -93,12 +93,12 @@ export default {
             address: 'Farm',
             is_homeless: false,
             job: 'agent',
-            note: '胡椒博士現身'
+            note: '胡椒博士現身',
           },
           orders: {
             apple_count: 5,
-            banana_condiments: ['chili', 'garlic']
-          }
+            banana_condiments: ['chili', 'garlic'],
+          },
         },
         {
           id: 'A0000004',
@@ -109,7 +109,7 @@ export default {
             address: 'America',
             is_homeless: false,
             job: 'secret_agent',
-            note: 'He is the president!'
+            note: 'He is the president!',
           },
           orders: {
             apple_count: 100,
@@ -121,27 +121,27 @@ export default {
               'chili',
               'garlic',
               'soy_sauce',
-              'thick_soy_sauce'
-            ]
-          }
-        }
+              'thick_soy_sauce',
+            ],
+          },
+        },
       ],
       currentPage: 1,
       pages: [],
       totalId: [],
       nextPage: {
         index: '1',
-        id: 'A0000001'
+        id: 'A0000001',
       },
       previousPage: {
         index: '',
-        id: ''
+        id: '',
       },
-      infoAndOrderIsEmpty: false
-    }
+      infoAndOrderIsEmpty: false,
+    };
   },
   computed: {
-    singleForm () {
+    singleForm() {
       return (
         this.$data.infoAndOrderArray[this.currentPage - 1] || {
           id: '',
@@ -152,154 +152,150 @@ export default {
             address: '',
             is_homeless: false,
             job: null,
-            note: ''
+            note: '',
           },
           orders: {
             apple_count: 0,
-            banana_condiments: []
-          }
+            banana_condiments: [],
+          },
         }
-      )
-    }
+      );
+    },
   },
   watch: {
     currentPage: {
-      handler () {
+      handler() {
         for (
           let index = 0;
           index < this.$data.infoAndOrderArray.length;
-          index++
+          index += 1
         ) {
           if (this.$data.currentPage === index + 1) {
-            console.log(index)
             if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
-              this.$data.nextPage.id = ''
-              this.$data.nextPage.index = ''
-              this.$data.previousPage.index = index - 1
+              this.$data.nextPage.id = '';
+              this.$data.nextPage.index = '';
+              this.$data.previousPage.index = index - 1;
               this.$data.previousPage.id = this.$data.infoAndOrderArray[
                 index - 1
-              ].id
-              return
+              ].id;
+              return;
             }
             if (this.$data.currentPage === 1) {
-              this.previousPage.id = ''
-              this.previousPage.index = ''
-              this.$data.nextPage.index = index + 1
-              this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-              return
+              this.previousPage.id = '';
+              this.previousPage.index = '';
+              this.$data.nextPage.index = index + 1;
+              this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id;
+              return;
             }
-            this.$data.nextPage.index = index + 1
-            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-            this.$data.previousPage.index = index - 1
+            this.$data.nextPage.index = index + 1;
+            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id;
+            this.$data.previousPage.index = index - 1;
             this.$data.previousPage.id = this.$data.infoAndOrderArray[
               index - 1
-            ].id
+            ].id;
           }
         }
       },
       deep: true,
-      immediate: true
+      immediate: true,
     },
     infoAndOrderArray: {
-      handler () {
+      handler() {
         if (this.$data.infoAndOrderArray[0]) {
-          this.$data.infoAndOrderIsEmpty = false
+          this.$data.infoAndOrderIsEmpty = false;
         } else {
-          this.$data.infoAndOrderIsEmpty = true
+          this.$data.infoAndOrderIsEmpty = true;
         }
-        this.setPages()
+        this.setPages();
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
-    setPages () {
-      this.$data.totalId = []
-      this.$data.pages = []
-      for (let index = 1; index <= this.infoAndOrderArray.length; index++) {
-        this.$data.pages.push(index)
+    setPages() {
+      this.$data.totalId = [];
+      this.$data.pages = [];
+      for (let index = 1; index <= this.infoAndOrderArray.length; index += 1) {
+        this.$data.pages.push(index);
       }
-      for (let i = 0; i < this.$data.infoAndOrderArray.length; i++) {
-        this.$data.totalId.push(this.$data.infoAndOrderArray[i].id)
+      for (let i = 0; i < this.$data.infoAndOrderArray.length; i += 1) {
+        this.$data.totalId.push(this.$data.infoAndOrderArray[i].id);
       }
     },
-    hanldleCurentPageIncrement () {
+    hanldleCurentPageIncrement() {
       if (this.$data.currentPage < this.$data.pages.length) {
-        this.$data.currentPage++
+        this.$data.currentPage += 1;
       }
     },
-    hanldleCurentPagedecrease () {
+    hanldleCurentPagedecrease() {
       if (this.$data.currentPage > 1) {
-        this.$data.currentPage--
+        this.$data.currentPage -= 1;
       }
     },
-    handleLogSingleForm () {
-      console.log(this.$data.infoAndOrderArray[this.currentPage - 1])
+    handleLogSingleForm() {
+      console.log(this.$data.infoAndOrderArray[this.currentPage - 1]);
     },
-    handleLogAllForm () {
-      console.log(this.$data.infoAndOrderArray)
+    handleLogAllForm() {
+      console.log(this.$data.infoAndOrderArray);
     },
-    handleDeleteSingleForm () {
-      const arr = this.$data.infoAndOrderArray
-      if (arr.length === 0) {
-        console.log('we have no customer!!')
-      }
+    handleDeleteSingleForm() {
+      const arr = this.$data.infoAndOrderArray;
       if (arr.length > 0) {
-        const singleFormTemp = this.singleForm.id
-        for (let index = 0; index < arr.length; index++) {
+        const singleFormTemp = this.singleForm.id;
+        for (let index = 0; index < arr.length; index += 1) {
           if (singleFormTemp === arr[index].id) {
-            this.$data.infoAndOrderArray.splice(index, 1)
-            this.$data.currentPage = 1
+            this.$data.infoAndOrderArray.splice(index, 1);
+            this.$data.currentPage = 1;
           }
         }
       }
     },
-    handleSwitchPageDownside (e) {
-      const arr = this.$data.infoAndOrderArray
-      let foundedId = 0
-      for (let index = 0; index < arr.length; index++) {
+    handleSwitchPageDownside(e) {
+      const arr = this.$data.infoAndOrderArray;
+      let foundedId = 0;
+      for (let index = 0; index < arr.length; index += 1) {
         if (arr[index].id === e) {
-          foundedId = index
+          foundedId = index;
         }
       }
-      this.$data.currentPage = foundedId + 1
+      this.$data.currentPage = foundedId + 1;
     },
-    handleParentSwitchPage (e) {
-      const arr = this.$data.infoAndOrderArray
-      let foundedId = 0
-      for (let index = 0; index < arr.length; index++) {
+    handleParentSwitchPage(e) {
+      const arr = this.$data.infoAndOrderArray;
+      let foundedId = 0;
+      for (let index = 0; index < arr.length; index += 1) {
         if (arr[index].id === e.target.value) {
-          foundedId = index
+          foundedId = index;
         }
       }
-      this.$data.currentPage = foundedId + 1
+      this.$data.currentPage = foundedId + 1;
     },
-    PlusOneParent () {
+    PlusOneParent() {
       if (this.singleForm.orders.apple_count < 100) {
-        this.singleForm.orders.apple_count++
+        this.singleForm.orders.apple_count += 1;
       }
     },
-    MinusOneParent () {
+    MinusOneParent() {
       if (this.singleForm.orders.apple_count > 1) {
-        this.singleForm.orders.apple_count--
+        this.singleForm.orders.apple_count -= 1;
       }
     },
-    PlusFiveParent () {
+    PlusFiveParent() {
       if (this.singleForm.orders.apple_count < 96) {
-        this.singleForm.orders.apple_count += 5
+        this.singleForm.orders.apple_count += 5;
       }
     },
-    MinusFiveParent () {
+    MinusFiveParent() {
       if (this.singleForm.orders.apple_count > 5) {
-        this.singleForm.orders.apple_count -= 5
+        this.singleForm.orders.apple_count -= 5;
       }
     },
-    handleOrderAndInput (e) {
-      this.singleForm.orders.apple_count = Math.round(e.target.value)
-    }
-  }
-}
+    handleOrderAndInput(e) {
+      this.singleForm.orders.apple_count = Math.round(e.target.value);
+    },
+  },
+};
 </script>
 
 <style>
