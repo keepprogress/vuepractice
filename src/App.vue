@@ -131,7 +131,7 @@ export default {
       totalId: [],
       nextPage: {
         index: '1',
-        id: 'A0000002'
+        id: 'A0000001'
       },
       previousPage: {
         index: '',
@@ -163,37 +163,42 @@ export default {
     }
   },
   watch: {
-    currentPage () {
-      for (
-        let index = 0;
-        index < this.$data.infoAndOrderArray.length;
-        index++
-      ) {
-        if (this.$data.currentPage === index + 1) {
-          if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
-            this.$data.nextPage.id = ''
-            this.$data.nextPage.index = ''
+    currentPage: {
+      handler () {
+        for (
+          let index = 0;
+          index < this.$data.infoAndOrderArray.length;
+          index++
+        ) {
+          if (this.$data.currentPage === index + 1) {
+            console.log(index)
+            if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
+              this.$data.nextPage.id = ''
+              this.$data.nextPage.index = ''
+              this.$data.previousPage.index = index - 1
+              this.$data.previousPage.id = this.$data.infoAndOrderArray[
+                index - 1
+              ].id
+              return
+            }
+            if (this.$data.currentPage === 1) {
+              this.previousPage.id = ''
+              this.previousPage.index = ''
+              this.$data.nextPage.index = index + 1
+              this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
+              return
+            }
+            this.$data.nextPage.index = index + 1
+            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
             this.$data.previousPage.index = index - 1
             this.$data.previousPage.id = this.$data.infoAndOrderArray[
               index - 1
             ].id
-            return
           }
-          if (this.$data.currentPage === 1) {
-            this.previousPage.id = ''
-            this.previousPage.index = ''
-            this.$data.nextPage.index = index + 1
-            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-            return
-          }
-          this.$data.nextPage.index = index + 1
-          this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id
-          this.$data.previousPage.index = index - 1
-          this.$data.previousPage.id = this.$data.infoAndOrderArray[
-            index - 1
-          ].id
         }
-      }
+      },
+      deep: true,
+      immediate: true
     },
     infoAndOrderArray: {
       handler () {
