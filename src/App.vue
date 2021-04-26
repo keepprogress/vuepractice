@@ -126,7 +126,7 @@ export default {
           },
         },
       ],
-      currentPage: 1,
+      currentPageNumber: 1,
       pages: [],
       totalId: [],
       nextPage: {
@@ -143,7 +143,7 @@ export default {
   computed: {
     singleForm() {
       return (
-        this.$data.infoAndOrderArray[this.currentPage - 1] || {
+        this.$data.infoAndOrderArray[this.currentPageNumber - 1] || {
           id: '',
           personal_info: {
             first_name: '',
@@ -163,15 +163,15 @@ export default {
     },
   },
   watch: {
-    currentPage: {
+    currentPageNumber: {
       handler() {
         for (
           let index = 0;
           index < this.$data.infoAndOrderArray.length;
           index += 1
         ) {
-          if (this.$data.currentPage === index + 1) {
-            if (this.$data.currentPage === this.$data.infoAndOrderArray.length) {
+          if (this.$data.currentPageNumber === index + 1) {
+            if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
               this.$data.nextPage.id = '';
               this.$data.nextPage.index = '';
               this.$data.previousPage.index = index - 1;
@@ -180,7 +180,7 @@ export default {
               ].id;
               return;
             }
-            if (this.$data.currentPage === 1) {
+            if (this.$data.currentPageNumber === 1) {
               this.previousPage.id = '';
               this.previousPage.index = '';
               this.$data.nextPage.index = index + 1;
@@ -224,17 +224,17 @@ export default {
       }
     },
     hanldleCurentPageIncrement() {
-      if (this.$data.currentPage < this.$data.pages.length) {
-        this.$data.currentPage += 1;
+      if (this.$data.currentPageNumber < this.$data.pages.length) {
+        this.$data.currentPageNumber += 1;
       }
     },
     hanldleCurentPagedecrease() {
-      if (this.$data.currentPage > 1) {
-        this.$data.currentPage -= 1;
+      if (this.$data.currentPageNumber > 1) {
+        this.$data.currentPageNumber -= 1;
       }
     },
     handleLogSingleForm() {
-      console.log(this.$data.infoAndOrderArray[this.currentPage - 1]);
+      console.log(this.$data.infoAndOrderArray[this.currentPageNumber - 1]);
     },
     handleLogAllForm() {
       console.log(this.$data.infoAndOrderArray);
@@ -246,7 +246,7 @@ export default {
         for (let index = 0; index < arr.length; index += 1) {
           if (singleFormTemp === arr[index].id) {
             this.$data.infoAndOrderArray.splice(index, 1);
-            this.$data.currentPage = 1;
+            this.$data.currentPageNumber = 1;
           }
         }
       }
@@ -259,7 +259,7 @@ export default {
           foundedId = index;
         }
       }
-      this.$data.currentPage = foundedId + 1;
+      this.$data.currentPageNumber = foundedId + 1;
     },
     handleParentSwitchPage(e) {
       const arr = this.$data.infoAndOrderArray;
@@ -269,7 +269,7 @@ export default {
           foundedId = index;
         }
       }
-      this.$data.currentPage = foundedId + 1;
+      this.$data.currentPageNumber = foundedId + 1;
     },
     PlusOneParent() {
       if (this.singleForm.orders.apple_count < 100) {
