@@ -98,14 +98,14 @@
             <ul class="pagination justify-content-center">
               <li
                 class="page-item"
-                :class="{ disabled: this.previousPage.id === '' }"
+                :class="{ disabled: this.previousPageObj.id === '' }"
               >
                 <button
                   type="button"
                   class="page-link"
                   data-toggle="tooltip"
                   data-placement="right"
-                  :title="previousPage.id"
+                  :title="previousPageObj.id"
                   @click="hanldleCurentPagedecrease"
                 >
                   Previous
@@ -130,14 +130,14 @@
               </li>
               <li
                 class="page-item"
-                :class="{ disabled: this.nextPage.id === '' }"
+                :class="{ disabled: this.nextPageObj.id === '' }"
               >
                 <button
                   type="button"
                   class="page-link"
                   data-toggle="tooltip"
                   data-placement="right"
-                  :title="nextPage.id"
+                  :title="nextPageObj.id"
                   @click="hanldleCurentPageIncrement"
                 >
                   Next
@@ -192,6 +192,14 @@ export default {
     infoAndOrderIsEmpty: {
       type: Boolean,
       default: false,
+    },
+    nextPageObj: {
+      type: Object,
+      default: () => {},
+    },
+    previousPageObj: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {

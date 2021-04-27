@@ -6,8 +6,8 @@
       :id="singleForm.id"
       :totalPages="pages"
       :totalId="totalId"
-      :nextPage="nextPage"
-      :previousPage="previousPage"
+      :nextPageObj="nextPageObj"
+      :previousPageObj="previousPageObj"
       :infoAndOrderIsEmpty="infoAndOrderIsEmpty"
       @handleOrderAppleInput="handleOrderAndInput"
       @PlusOneParent="PlusOneParent"
@@ -161,44 +161,60 @@ export default {
         }
       );
     },
-  },
-  watch: {
-    currentPageNumber: {
-      handler() {
-        for (
-          let index = 0;
-          index < this.$data.infoAndOrderArray.length;
-          index += 1
-        ) {
-          if (this.$data.currentPageNumber === index + 1) {
-            if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
-              this.$data.nextPage.id = '';
-              this.$data.nextPage.index = '';
-              this.$data.previousPage.index = index - 1;
-              this.$data.previousPage.id = this.$data.infoAndOrderArray[
-                index - 1
-              ].id;
-              return;
-            }
-            if (this.$data.currentPageNumber === 1) {
-              this.previousPage.id = '';
-              this.previousPage.index = '';
-              this.$data.nextPage.index = index + 1;
-              this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id;
-              return;
-            }
-            this.$data.nextPage.index = index + 1;
-            this.$data.nextPage.id = this.$data.infoAndOrderArray[index + 1].id;
-            this.$data.previousPage.index = index - 1;
-            this.$data.previousPage.id = this.$data.infoAndOrderArray[
+    nextPageObj() {
+      const tempObj = {};
+      for (
+        let index = 0;
+        index < this.$data.infoAndOrderArray.length;
+        index += 1
+      ) {
+        if (this.$data.currentPageNumber === index + 1) {
+          if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
+            tempObj.id = '';
+            tempObj.index = '';
+            return tempObj;
+          }
+          if (this.$data.currentPageNumber === 1) {
+            tempObj.index = index + 1;
+            tempObj.id = this.$data.infoAndOrderArray[index + 1].id;
+            return tempObj;
+          }
+          tempObj.index = index + 1;
+          tempObj.id = this.$data.infoAndOrderArray[index + 1].id;
+        }
+      }
+      return tempObj;
+    },
+    previousPageObj() {
+      const tempObj = {};
+      for (
+        let index = 0;
+        index < this.$data.infoAndOrderArray.length;
+        index += 1
+      ) {
+        if (this.$data.currentPageNumber === index + 1) {
+          if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
+            tempObj.index = index - 1;
+            tempObj.id = this.$data.infoAndOrderArray[
               index - 1
             ].id;
+            return tempObj;
           }
+          if (this.$data.currentPageNumber === 1) {
+            tempObj.id = '';
+            tempObj.index = '';
+            return tempObj;
+          }
+          tempObj.index = index - 1;
+          tempObj.id = this.$data.infoAndOrderArray[
+            index - 1
+          ].id;
         }
-      },
-      deep: true,
-      immediate: true,
+      }
+      return tempObj;
     },
+  },
+  watch: {
     infoAndOrderArray: {
       handler() {
         if (this.$data.infoAndOrderArray[0]) {
