@@ -61,7 +61,7 @@
             id="Female"
             value="2"
             v-model="computed_customerInfo.gender"
-          />
+            />
           <label class="form-check-label" for="Female"> Female </label>
         </div>
       </div>

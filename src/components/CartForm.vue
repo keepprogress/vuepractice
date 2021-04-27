@@ -10,7 +10,10 @@
             aria-label="Default select example"
             @change="FormTopIDChangeHandler"
           >
-            <option v-for="idSingle in totalId" :key="idSingle">
+            <option
+            v-for="idSingle in totalId"
+            :key="idSingle"
+            >
               {{ idSingle }}
             </option></select
           >,共{{ totalPages.length }}張
@@ -24,7 +27,11 @@
         >
           Log this Form
         </button>
-        <button type="button" class="btn btn-info" @click="LogAllFormHandler">
+        <button
+        type="button"
+        class="btn btn-info"
+        @click="LogAllFormHandler"
+        >
           Log all forms
         </button>
         <button
