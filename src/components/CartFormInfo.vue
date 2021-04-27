@@ -9,7 +9,7 @@
             class="form-control"
             id="FirstName"
             placeholder="Plz type your firstname"
-            v-model="component_value.first_name"
+            v-model="computed_customerInfo.first_name"
           />
         </div>
       </div>
@@ -21,7 +21,7 @@
             class="form-control"
             id="LastName"
             placeholder="Plz type your lastname"
-            v-model="component_value.last_name"
+            v-model="computed_customerInfo.last_name"
           />
         </div>
       </div>
@@ -37,8 +37,8 @@
             type="radio"
             name="GenderRadio"
             id="Secret"
-            value=0
-            v-model="component_value.gender"
+            value="0"
+            v-model="computed_customerInfo.gender"
           />
           <label class="form-check-label" for="Secret"> Secret </label>
         </div>
@@ -48,8 +48,8 @@
             type="radio"
             name="GenderRadio"
             id="Male"
-            value=1
-            v-model="component_value.gender"
+            value="1"
+            v-model="computed_customerInfo.gender"
           />
           <label class="form-check-label" for="Male"> Male </label>
         </div>
@@ -59,8 +59,8 @@
             type="radio"
             name="GenderRadio"
             id="Female"
-            value=2
-            v-model="component_value.gender"
+            value="2"
+            v-model="computed_customerInfo.gender"
           />
           <label class="form-check-label" for="Female"> Female </label>
         </div>
@@ -73,8 +73,8 @@
         class="form-control"
         id="Address"
         placeholder="Plz type your Address"
-        v-model="component_value.address"
-        :disabled="this.component_value.is_homeless"
+        v-model="computed_customerInfo.address"
+        :disabled="this.computed_customerInfo.is_homeless"
       />
     </div>
     <div class="pt-3">
@@ -84,7 +84,7 @@
           type="checkbox"
           value=""
           id="flexCheckDefault"
-          v-model="component_value.is_homeless"
+          v-model="computed_customerInfo.is_homeless"
           @input="deleteAddress"
         />
         <label class="form-check-label" for="flexCheckDefault">
@@ -94,8 +94,12 @@
     </div>
     <div class="pt-2 text-left">
       <p class="mb-2">Job</p>
-      <select class="form-select" aria-label="Default select example" v-model="component_value.job">
-        <option value=null>保密</option>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        v-model="computed_customerInfo.job"
+      >
+        <option value="null">保密</option>
         <option value="agent">調查員</option>
         <option value="secret_agent">秘密調查員</option>
         <option value="agent_of_secret_agent">秘密調查員的調查員</option>
@@ -108,7 +112,7 @@
         class="form-control"
         aria-label="With textarea"
         placeholder="Note Here"
-        v-model="component_value.note"
+        v-model="computed_customerInfo.note"
         maxlength="2000"
       ></textarea>
     </div>
@@ -134,16 +138,16 @@ export default {
       if (!this.customerInfo.note) {
         return 0;
       }
-      const str = this.component_value.note;
+      const str = this.computed_customerInfo.note;
       return str.length;
     },
-    component_value() {
+    computed_customerInfo() {
       return this.customerInfo;
     },
   },
   methods: {
     deleteAddress() {
-      this.component_value.address = '';
+      this.computed_customerInfo.address = '';
     },
   },
 };
