@@ -27,7 +27,6 @@ export default {
   },
   data() {
     return {
-      tempOrder: {},
       compareBanana: {
         chocolate: '巧克力醬',
         strawberry: '草莓醬',

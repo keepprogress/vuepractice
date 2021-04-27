@@ -10,28 +10,17 @@
             aria-label="Default select example"
             @change="FormTopIDChangeHandler"
           >
-            <option
-            v-for="idSingle in totalId"
-            :key="idSingle"
-            >
+            <option v-for="idSingle in totalId" :key="idSingle">
               {{ idSingle }}
             </option></select
           >,共{{ totalPages.length }}張
         </p>
       </div>
       <div class="p-2 col-sm">
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="LogSingleFormHandler"
-        >
+        <button type="button" class="btn btn-primary" @click="LogSingleFormHandler">
           Log this Form
         </button>
-        <button
-        type="button"
-        class="btn btn-info"
-        @click="LogAllFormHandler"
-        >
+        <button type="button" class="btn btn-info" @click="LogAllFormHandler">
           Log all forms
         </button>
         <button
@@ -103,10 +92,7 @@
         <div class="mt-5">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <li
-                class="page-item"
-                :class="{ disabled: this.previousPageObj.id === '' }"
-              >
+              <li class="page-item" :class="{ disabled: this.previousPageObj.id === '' }">
                 <button
                   type="button"
                   class="page-link"
@@ -135,10 +121,7 @@
                   {{ totalId.indexOf(idSingle) + 1 }}
                 </button>
               </li>
-              <li
-                class="page-item"
-                :class="{ disabled: this.nextPageObj.id === '' }"
-              >
+              <li class="page-item" :class="{ disabled: this.nextPageObj.id === '' }">
                 <button
                   type="button"
                   class="page-link"
@@ -225,16 +208,9 @@ export default {
         },
         orders: {
           apple_count: 99,
-          banana_condiments: [
-            'chocolate',
-            'chili',
-            'garlic',
-            'soy_sauce',
-            'miso',
-          ],
+          banana_condiments: ['chocolate', 'chili', 'garlic', 'soy_sauce', 'miso'],
         },
       },
-      fakeId: 'A0000004',
     };
   },
   watch: {

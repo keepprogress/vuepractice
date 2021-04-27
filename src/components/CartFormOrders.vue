@@ -147,7 +147,6 @@ export default {
   },
   data() {
     return {
-      counter: 1,
       maxAppleCount: 100,
     };
   },

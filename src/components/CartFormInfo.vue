@@ -128,11 +128,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-      note: '',
-    };
-  },
   computed: {
     countNoteStr() {
       if (!this.customerInfo.note) {
