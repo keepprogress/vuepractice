@@ -163,11 +163,7 @@ export default {
     },
     nextPageObj() {
       const tempObj = {};
-      for (
-        let index = 0;
-        index < this.$data.infoAndOrderArray.length;
-        index += 1
-      ) {
+      for (let index = 0; index < this.$data.infoAndOrderArray.length; index += 1) {
         if (this.$data.currentPageNumber === index + 1) {
           if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
             tempObj.id = '';
@@ -187,17 +183,11 @@ export default {
     },
     previousPageObj() {
       const tempObj = {};
-      for (
-        let index = 0;
-        index < this.$data.infoAndOrderArray.length;
-        index += 1
-      ) {
+      for (let index = 0; index < this.$data.infoAndOrderArray.length; index += 1) {
         if (this.$data.currentPageNumber === index + 1) {
           if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
             tempObj.index = index - 1;
-            tempObj.id = this.$data.infoAndOrderArray[
-              index - 1
-            ].id;
+            tempObj.id = this.$data.infoAndOrderArray[index - 1].id;
             return tempObj;
           }
           if (this.$data.currentPageNumber === 1) {
@@ -206,9 +196,7 @@ export default {
             return tempObj;
           }
           tempObj.index = index - 1;
-          tempObj.id = this.$data.infoAndOrderArray[
-            index - 1
-          ].id;
+          tempObj.id = this.$data.infoAndOrderArray[index - 1].id;
         }
       }
       return tempObj;

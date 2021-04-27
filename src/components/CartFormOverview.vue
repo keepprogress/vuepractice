@@ -1,16 +1,14 @@
 <template>
-    <div class="text-left">
-        <p>
-            以下是{{ info_full_name }}的訂單
-        </p>
-        <ul>
-            <li>{{ orders.apple_count }}顆蘋果</li>
-            <li v-if="!bananaIsEmpty">香蕉配料</li>
-            <ul>
-              <li v-for="condiment in bananaCondimentView" :key="condiment">{{ condiment }}</li>
-            </ul>
-        </ul>
-    </div>
+  <div class="text-left">
+    <p>以下是{{ info_full_name }}的訂單</p>
+    <ul>
+      <li>{{ orders.apple_count }}顆蘋果</li>
+      <li v-if="!bananaIsEmpty">香蕉配料</li>
+      <ul>
+        <li v-for="condiment in bananaCondimentView" :key="condiment">{{ condiment }}</li>
+      </ul>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -47,9 +45,11 @@ export default {
     info_full_name() {
       if (!this.customerInfo.first_name && !this.customerInfo.last_name) {
         return 'unknown';
-      } if (!this.customerInfo.first_name) {
+      }
+      if (!this.customerInfo.first_name) {
         return this.customerInfo.last_name;
-      } if (!this.customerInfo.last_name) {
+      }
+      if (!this.customerInfo.last_name) {
         return this.customerInfo.first_name;
       }
       return [this.customerInfo.last_name, ' ', this.customerInfo.first_name].join('');
@@ -79,6 +79,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

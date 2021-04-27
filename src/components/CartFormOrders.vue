@@ -5,11 +5,7 @@
         <p class="text-left thick">Apple</p>
       </div>
       <div class="col">
-        <button
-          type="button"
-          @click="handlePlusFiveClick"
-          class="btn btn-light"
-        >
+        <button type="button" @click="handlePlusFiveClick" class="btn btn-light">
           +5
         </button>
       </div>
@@ -30,20 +26,12 @@
         />
       </div>
       <div class="col">
-        <button
-          type="button"
-          @click="handleMinusOneClick"
-          class="btn btn-light"
-        >
+        <button type="button" @click="handleMinusOneClick" class="btn btn-light">
           -1
         </button>
       </div>
       <div class="col">
-        <button
-          type="button"
-          @click="handleMinusFiveClick"
-          class="btn btn-light"
-        >
+        <button type="button" @click="handleMinusFiveClick" class="btn btn-light">
           -5
         </button>
       </div>
@@ -144,8 +132,8 @@
         </div>
       </div>
     </div>
-  </div>
-</template>>
+  </div> </template
+>>
 
 <script>
 export default {
@@ -201,5 +189,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
