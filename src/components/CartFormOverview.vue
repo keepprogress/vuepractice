@@ -53,7 +53,7 @@ export default {
       if (!this.customerInfo.last_name) {
         return this.customerInfo.first_name;
       }
-      return [this.customerInfo.last_name, ' ', this.customerInfo.first_name].join('');
+      return `${this.customerInfo.last_name} ${this.customerInfo.first_name}`;
     },
   },
   watch: {
