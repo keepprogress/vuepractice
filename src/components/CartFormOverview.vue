@@ -5,7 +5,9 @@
       <li>{{ orders.apple_count }}顆蘋果</li>
       <li v-if="!bananaIsEmpty">香蕉配料</li>
       <ul>
-        <li v-for="condiment in bananaCondimentView" :key="condiment">{{ condiment }}</li>
+        <li v-for="condiment in bananaCondimentView" :key="condiment">
+          {{ condiment }}
+        </li>
       </ul>
     </ul>
   </div>
