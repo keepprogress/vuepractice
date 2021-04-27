@@ -185,14 +185,14 @@ export default {
       const tempObj = {};
       for (let index = 0; index < this.$data.infoAndOrderArray.length; index += 1) {
         if (this.$data.currentPageNumber === index + 1) {
-          if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
-            tempObj.index = index - 1;
-            tempObj.id = this.$data.infoAndOrderArray[index - 1].id;
-            return tempObj;
-          }
           if (this.$data.currentPageNumber === 1) {
             tempObj.id = '';
             tempObj.index = '';
+            return tempObj;
+          }
+          if (this.$data.currentPageNumber === this.$data.infoAndOrderArray.length) {
+            tempObj.index = index - 1;
+            tempObj.id = this.$data.infoAndOrderArray[index - 1].id;
             return tempObj;
           }
           tempObj.index = index - 1;
